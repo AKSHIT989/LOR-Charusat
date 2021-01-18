@@ -30,6 +30,7 @@ git commit -m "proper-message"
 git push origin <branch-name>
 ```
 Now move the task in project section from "In progress" to "Done"
+
 6) If all things are good make a pull request but ```DON'T``` merge it directly.
 
 7) If you are supposed to work on a different task then synchronise your local copy with remote repo and then perform task
