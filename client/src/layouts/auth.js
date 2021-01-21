@@ -1,11 +1,11 @@
 import React from 'react'
 
-function index() {
+function auth() {
     return (
         <div>
-            HELLO
+            
         </div>
     )
 }
 
-export default index
+export default auth

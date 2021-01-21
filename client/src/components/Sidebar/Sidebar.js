@@ -23,9 +23,9 @@ export default function Sidebar({ color }) {
           {/* Brand */}
           <Link
             className="md:block text-center md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
+            to="/admin/dashboard"
           >
-          <span className="text-2xl" style={{fontFamily:"'Lobster', cursive",padding:"1em",color:"#1b7ced"}}>LOR-Charusat</span>
+          <span className="text-2xl dashboard-logo" style={{fontFamily:"'Lobster', cursive",padding:"1em",color:"#1b7ced"}}>LOR-Charusat</span>
            
           </Link>
           {/* User */}
@@ -112,7 +112,7 @@ export default function Sidebar({ color }) {
                 <Link
                   className={
                     "text-xs uppercase py-3 font-bold block " +
-                    (window.location.href.indexOf("/admin/settings") !== -1
+                    (window.location.href.indexOf("/settings") !== -1
                       ? "text-blue-500 hover:text-blue-600"
                       : "text-gray-800 hover:text-gray-600")
                   }

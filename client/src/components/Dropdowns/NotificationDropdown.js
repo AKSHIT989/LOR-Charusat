@@ -18,7 +18,7 @@ const NotificationDropdown = () => {
   };
   return (
     <>
-      <a
+      {/* <a
         className="text-gray-600 block py-1 px-3"
         href="#pablo"
         ref={btnDropdownRef}
@@ -28,7 +28,7 @@ const NotificationDropdown = () => {
         }}
       >
         <i className="fas fa-bell"></i>
-      </a>
+      </a> */}
       <div
         ref={popoverDropdownRef}
         className={
