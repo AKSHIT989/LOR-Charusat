@@ -2,9 +2,6 @@ import React from "react";
 
 // components
 
-// import abc  from '../'
-import CardStats from "../Cards/CardStats.js";
-import CardTable from "../Cards/CardTable";
 
 export default function HeaderStats() {
   return (

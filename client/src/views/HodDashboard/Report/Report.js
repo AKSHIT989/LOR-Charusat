@@ -1,11 +1,11 @@
 import React from 'react'
 
-function index() {
+function Report() {
     return (
         <div>
-            HELLO
+            Hello from /hod/report
         </div>
     )
 }
 
-export default index
+export default Report
