@@ -12,10 +12,11 @@ import Report from '../views/StudentDashboard/Report/Report'
 
 function Student() {
     const studentHeader = [
-        { icon: `fas fa-home`, text: "Home", link: "/student/home" },
+        { icon: `fas fa-home`, text: "LOR Status", link: "/student/status" },
         { icon: `fas fa-envelope-open-text`, text: "LOR Request", link: "/student/request" },
         { icon: `fas fa-address-card`, text: "Admission Card", link: "/student/admission" },
-        { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/student/status" },
+        { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/student/draft-status" },
+        { icon: `far fa-chart-bar`, text: "Report", link: "/student/report" },
         { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
       ];
     return (

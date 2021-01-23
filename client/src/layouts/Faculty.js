@@ -9,8 +9,8 @@ import Report from '../views/FacultyDashboard/Report/Report'
 
 function Faculty() {
     const facultyHeader = [
-        { icon: `fas fa-envelope-open-text`, text: "LOR Request Form", link: "/faculty/request" },
-        { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/faculty/draft" },
+        { icon: `fas fa-envelope-open-text`, text: "LOR Requests", link: "/faculty/request" },
+        // { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/faculty/draft" },
         { icon: `far fa-chart-bar`, text: "Report", link: "/faculty/report" },
         { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
       ];
