@@ -12,9 +12,16 @@ import UserManage from '../views/HodDashboard/UserManage/UserManage'
 
 
 function Hod() {
+    const hodHeader = [
+        { icon: `fas fa-envelope-open-text`, text: "Approve LOR Request", link: "/hod/request" },
+        { icon: `far fa-chart-bar`, text: "Report", link: "/hod/report" },
+        { icon: `fas fa-user-plus`, text: "User Creation", link: "/hod/user-creation" },
+        { icon: `fas fa-users-cog`, text: "User Management", link: "/hod/user-management" },
+        { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
+      ];
     return (
         <>
-            <Sidebar />
+            <Sidebar navs={hodHeader} />
             <div className="relative md:ml-64 bg-gray-200">
                 <AdminNavbar />
 

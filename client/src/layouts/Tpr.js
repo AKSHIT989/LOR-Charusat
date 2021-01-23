@@ -8,9 +8,14 @@ import Request from '../views/TprDashboard/Request/LorRequest'
 import Report from '../views/TprDashboard/Report/Report'
 
 function Tpr() {
+    const tprHeader = [
+        { icon: `fas fa-envelope-open-text`, text: "Approve LOR Request", link: "/tpr/request" },
+        { icon: `far fa-chart-bar`, text: "Report", link: "/tpr/report" },
+        { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
+      ];
     return (
         <>
-            <Sidebar />
+            <Sidebar navs={tprHeader}/>
             <div className="relative md:ml-64 bg-gray-200">
                 <AdminNavbar />
 

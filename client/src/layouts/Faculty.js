@@ -8,9 +8,15 @@ import Request from '../views/FacultyDashboard/Request/LorRequest'
 import Report from '../views/FacultyDashboard/Report/Report'
 
 function Faculty() {
+    const facultyHeader = [
+        { icon: `fas fa-envelope-open-text`, text: "LOR Request Form", link: "/faculty/request" },
+        { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/faculty/draft" },
+        { icon: `far fa-chart-bar`, text: "Report", link: "/faculty/report" },
+        { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
+      ];
     return (
         <>
-            <Sidebar />
+            <Sidebar navs={facultyHeader} />
             <div className="relative md:ml-64 bg-gray-200">
                 <AdminNavbar />
 
