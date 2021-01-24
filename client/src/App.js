@@ -1,14 +1,11 @@
-import './App.css';
-
+import "./assets/styles/tailwind.css"
+import "@fortawesome/fontawesome-free/css/all.min.css";
+import Routes from './routes'
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <p>
-          Letter of Recommendation Charusat
-        </p>
-      </header>
-    </div>
+    <>
+      <Routes/>
+    </>
   );
 }
 
