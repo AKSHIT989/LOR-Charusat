@@ -4,7 +4,7 @@ import AdminNavbar from "../components/Navbar/AdminNavbar.js";
 import Sidebar from "../components/Sidebar/Sidebar.js";
 import HeaderStats from "../components/Headers/HeaderStats.js";
 
-import RequestsAction from '../views/HodDashboard/RequestsAction/RequestsAction'
+// import RequestsAction from '../views/HodDashboard/RequestsAction/RequestsAction'
 import LorRequest from '../views/HodDashboard/LorRequest/LorRequest'
 import Report from '../views/HodDashboard/Report/Report'
 import UserCreate from '../views/HodDashboard/UserCreate/UserCreate'
@@ -28,12 +28,12 @@ function Hod() {
                 <HeaderStats />
                 <div className="px-4 md:px-10 mx-auto w-full -m-24">
                 <Switch>
-                    <Route path="/hod/requests-action" exact component={RequestsAction} />
+                    {/* <Route path="/hod/requests-action" exact component={RequestsAction} /> */}
                     <Route path="/hod/request" exact component={LorRequest} />
                     <Route path="/hod/report" exact component={Report} />
                     <Route path="/hod/user-create" exact component={UserCreate} />
                     <Route path="/hod/user-manage" exact component={UserManage} />
-                    <Redirect from="/hod" to="/hod/requests-action" />
+                    <Redirect from="/hod" to="/hod/request" />
                 </Switch>
                 </div>
             </div>

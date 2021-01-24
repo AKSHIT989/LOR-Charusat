@@ -6,6 +6,7 @@ import HeaderStats from "../components/Headers/HeaderStats.js";
 
 import Request from '../views/FacultyDashboard/Request/LorRequest'
 import Report from '../views/FacultyDashboard/Report/Report'
+import DraftStatus from '../views/FacultyDashboard/DraftStatus/DraftStatus'
 
 function Faculty() {
     const facultyHeader = [
@@ -25,6 +26,7 @@ function Faculty() {
                 <Switch>
                     <Route path="/faculty/request" exact component={Request} />
                     <Route path="/faculty/report" exact component={Report} />
+                    <Route path="/faculty/draft" exact component={DraftStatus} />
                     <Redirect from="/faculty" to="/faculty/request" />
                 </Switch>
                 </div>
