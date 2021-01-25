@@ -13,29 +13,39 @@ import VueDashboard from "../../assets/img/vue.jpg";
 
 export default function CardTable({ color, header, body }) {
   const thElements = header.map((headerName, index) => {
-    return (<>{headerName}</>);
+    return (
+      <th
+        className={
+          "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
+          (color === "light"
+            ? "bg-gray-100 text-gray-600 border-gray-200"
+            : "bg-blue-800 text-blue-300 border-blue-700")
+        }
+        key={`h${index}`}
+      >
+        {headerName}
+      </th>
+    );
   });
 
   const trElements = body.map((row, rowIndex) => {
     const tdElements = row.map((cell, colIndex) => {
       return (
-        
-          <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
-            <img
-              src={Argon}
-              className="h-12 w-12 bg-white rounded-full border"
-              alt="..."
-            ></img>{" "}
-            <span
-              className={
-                "ml-3 font-bold " +
-                +(color === "light" ? "text-gray-700" : "text-white")
-              }
-            >
-              {cell}
-            </span>
-          </th>
-        
+        <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center" key={`r${rowIndex}c${colIndex}`}>
+          <img
+            src={Argon}
+            className="h-12 w-12 bg-white rounded-full border"
+            alt="..."
+          ></img>{" "}
+          <span
+            className={
+              "ml-3 font-bold " +
+              +(color === "light" ? "text-gray-700" : "text-white")
+            }
+          >
+            {cell}
+          </span>
+        </td>
       );
     });
     return <tr key={`r${rowIndex}`}>{tdElements}</tr>;
@@ -66,24 +76,12 @@ export default function CardTable({ color, header, body }) {
           {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
-              <tr>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-100 text-gray-600 border-gray-200"
-                      : "bg-blue-800 text-blue-300 border-blue-700")
-                  }
-                >
-                  {thElements}
-                </th>
-              </tr>
+              <tr>{thElements}</tr>
             </thead>
 
             <tbody>
-            {trElements}
+              {trElements}
               <tr>
-                
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
                   <img
                     src={Argon}
