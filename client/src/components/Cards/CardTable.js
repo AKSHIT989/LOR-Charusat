@@ -5,11 +5,11 @@ import PropTypes from "prop-types";
 
 import TableDropdown from "../Dropdowns/TableDropdown.js";
 // import TableDropdown from "../../assets";
-import Argon from '../../assets/img/bootstrap.jpg'
-import AngularNow from '../../assets/img/angular.jpg'
-import BlackDashboard from '../../assets/img/sketch.jpg'
-import ReactDashboard from '../../assets/img/react.jpg'
-import VueDashboard from '../../assets/img/vue.jpg'
+import Argon from "../../assets/img/bootstrap.jpg";
+import AngularNow from "../../assets/img/angular.jpg";
+import BlackDashboard from "../../assets/img/sketch.jpg";
+import ReactDashboard from "../../assets/img/react.jpg";
+import VueDashboard from "../../assets/img/vue.jpg";
 
 export default function CardTable({ color}) {
   // const thElements = header.map((cell, index) => {
