@@ -11,14 +11,16 @@ function LorRequest() {
   ];
 
   const body = [
-    ["1", "17CE001", "Navdeep Dadhania", "6", "View"],
-    ["2", "17CE002", "Nihal Shaikh", "6", "View"],
-    ["3", "17CE003", "Akshit Soneji", "6", "View"],
+    [{no: "1", id:"17CE001", name:"Navdeep Dadhania", sem:"6", other:"View"}],
+    [{no:"2", id:"17CE002", name:"Nihal Shaikh", sem:"6", other:"View"}],
+    [{no:"3", id:"17CE003", name:"Akshit Soneji", sem:"6", other:"View"}],
   ];
+
+  const title ="LOR Request List"
 
   return (
     <div>
-      <CardTable header={header} body={body} />;
+      <CardTable title={title} header={header} body={body} />
     </div>
   );
 }
