@@ -31,7 +31,7 @@ export default function CardTable({ color }) {
                   (color === "light" ? "text-gray-800" : "text-white")
                 }
               >
-                  Letter of Recommendation Request Table
+                  Letter of Recommendation Request List
               </h3>
             </div>
           </div>
@@ -51,7 +51,7 @@ export default function CardTable({ color }) {
                 >
                   Request
                 </th>
-                {/* <th
+                <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
                     (color === "light"
@@ -60,7 +60,7 @@ export default function CardTable({ color }) {
                   }
                 >
                   Budget
-                </th> */}
+                </th>
                 <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
@@ -71,7 +71,7 @@ export default function CardTable({ color }) {
                 >
                   Status
                 </th>
-                {/* <th
+                <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
                     (color === "light"
@@ -80,7 +80,7 @@ export default function CardTable({ color }) {
                   }
                 >
                   Faculties
-                </th> */}
+                </th>
                 <th
                   className={
                     "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
