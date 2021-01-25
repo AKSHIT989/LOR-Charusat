@@ -11,9 +11,36 @@ import BlackDashboard from '../../assets/img/sketch.jpg'
 import ReactDashboard from '../../assets/img/react.jpg'
 import VueDashboard from '../../assets/img/vue.jpg'
 
+export default function CardTable({ color}) {
+  // const thElements = header.map((cell, index) => {
+  //   return (
+  //     <th
+  //       className={
+  //         "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
+  //         (color === "light"
+  //           ? "bg-gray-100 text-gray-600 border-gray-200"
+  //           : "bg-blue-800 text-blue-300 border-blue-700")
+  //       }
+  //       key={`h${index}`}
+  //     >
+  //       {cell}
+  //     </th>
+  //   );
+  // });
 
-
-export default function CardTable({ color }) {
+  // const trElements = body.map((row, rowIndex) => {
+  //   const tdElements = row.map((cell, colIndex) => {
+  //     return (
+  //       <td
+  //         className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
+  //         key={`r${rowIndex}c${colIndex}`}
+  //       >
+  //         {cell}
+  //       </td>
+  //     );
+  //   });
+  //   return <tr key={`r${rowIndex}`}>{tdElements}</tr>;
+  // });
   return (
     <>
       <div
@@ -31,7 +58,7 @@ export default function CardTable({ color }) {
                   (color === "light" ? "text-gray-800" : "text-white")
                 }
               >
-                  Letter of Recommendation Request List
+                Letter of Recommendation Request List
               </h3>
             </div>
           </div>
@@ -51,54 +78,6 @@ export default function CardTable({ color }) {
                 >
                   Request
                 </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-100 text-gray-600 border-gray-200"
-                      : "bg-blue-800 text-blue-300 border-blue-700")
-                  }
-                >
-                  Budget
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-100 text-gray-600 border-gray-200"
-                      : "bg-blue-800 text-blue-300 border-blue-700")
-                  }
-                >
-                  Status
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-100 text-gray-600 border-gray-200"
-                      : "bg-blue-800 text-blue-300 border-blue-700")
-                  }
-                >
-                  Faculties
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-100 text-gray-600 border-gray-200"
-                      : "bg-blue-800 text-blue-300 border-blue-700")
-                  }
-                >
-                  Completion
-                </th>
-                <th
-                  className={
-                    "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-                    (color === "light"
-                      ? "bg-gray-100 text-gray-600 border-gray-200"
-                      : "bg-blue-800 text-blue-300 border-blue-700")
-                  }
-                ></th>
               </tr>
             </thead>
             <tbody>
