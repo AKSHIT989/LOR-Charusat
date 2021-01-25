@@ -11,36 +11,35 @@ import BlackDashboard from "../../assets/img/sketch.jpg";
 import ReactDashboard from "../../assets/img/react.jpg";
 import VueDashboard from "../../assets/img/vue.jpg";
 
-export default function CardTable({ color}) {
-  // const thElements = header.map((cell, index) => {
-  //   return (
-  //     <th
-  //       className={
-  //         "px-6 align-middle border border-solid py-3 text-xs uppercase border-l-0 border-r-0 whitespace-no-wrap font-semibold text-left " +
-  //         (color === "light"
-  //           ? "bg-gray-100 text-gray-600 border-gray-200"
-  //           : "bg-blue-800 text-blue-300 border-blue-700")
-  //       }
-  //       key={`h${index}`}
-  //     >
-  //       {cell}
-  //     </th>
-  //   );
-  // });
+export default function CardTable({ color, header, body }) {
+  const thElements = header.map((headerName, index) => {
+    return (<>{headerName}</>);
+  });
 
-  // const trElements = body.map((row, rowIndex) => {
-  //   const tdElements = row.map((cell, colIndex) => {
-  //     return (
-  //       <td
-  //         className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4"
-  //         key={`r${rowIndex}c${colIndex}`}
-  //       >
-  //         {cell}
-  //       </td>
-  //     );
-  //   });
-  //   return <tr key={`r${rowIndex}`}>{tdElements}</tr>;
-  // });
+  const trElements = body.map((row, rowIndex) => {
+    const tdElements = row.map((cell, colIndex) => {
+      return (
+        
+          <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
+            <img
+              src={Argon}
+              className="h-12 w-12 bg-white rounded-full border"
+              alt="..."
+            ></img>{" "}
+            <span
+              className={
+                "ml-3 font-bold " +
+                +(color === "light" ? "text-gray-700" : "text-white")
+              }
+            >
+              {cell}
+            </span>
+          </th>
+        
+      );
+    });
+    return <tr key={`r${rowIndex}`}>{tdElements}</tr>;
+  });
   return (
     <>
       <div
@@ -76,12 +75,15 @@ export default function CardTable({ color}) {
                       : "bg-blue-800 text-blue-300 border-blue-700")
                   }
                 >
-                  Request
+                  {thElements}
                 </th>
               </tr>
             </thead>
+
             <tbody>
+            {trElements}
               <tr>
+                
                 <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4 text-left flex items-center">
                   <img
                     src={Argon}
