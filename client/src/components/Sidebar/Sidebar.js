@@ -3,9 +3,9 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 // import NotificationDropdown from "components/Dropdowns/NotificationDropdown.js";
-// import UserDropdown from "components/Dropdowns/UserDropdown.js";
+import UserDropdown from "../../components/Dropdowns/UserDropdown";
 
-export default function Sidebar({navs}) {
+export default function Sidebar({navs, profile}) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const liElements = navs.map((nav, index) => {
     return (
@@ -35,7 +35,7 @@ export default function Sidebar({navs}) {
   return (
     <>
       <nav className="md:left-0 md:block md:fixed md:top-0 md:bottom-0 md:overflow-y-auto md:flex-row md:flex-no-wrap md:overflow-hidden shadow-xl bg-white flex flex-wrap items-center justify-between relative md:w-64 z-10 py-4 px-6">
-        <div className="md:flex-col md:items-stretch md:min-h-full md:flex-no-wrap px-0 flex flex-wrap items-center justify-start w-full mx-auto md:justify-between">
+        <div className="md:flex-col md:items-stretch md:min-h-full md:flex-no-wrap px-0 flex flex-wrap items-center justify-between w-full mx-auto">
           {/* Toggler */}
           <button
             className="cursor-pointer text-black opacity-50 md:hidden px-3 py-1 text-xl leading-none bg-transparent rounded border border-solid border-transparent"
@@ -47,7 +47,7 @@ export default function Sidebar({navs}) {
           {/* Brand */}
           <Link
             className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
-            to="/"
+            to={navs[0].link}
           >
             LOR CHARUSAT
           </Link>
@@ -55,11 +55,11 @@ export default function Sidebar({navs}) {
           {/* <ul className="md:hidden items-center flex flex-wrap list-none">
             <li className="inline-block relative">
               <NotificationDropdown />
-            </li>
-            <li className="inline-block relative">
-              <UserDropdown />
-            </li>
-          </ul> */}
+            </li> */}
+            <div className="inline-block relative items-center flex flex-wrap md:hidden">
+              <UserDropdown profile={profile} />
+            </div>
+          {/* </ul> */}
           {/* Collapse */}
           <div
             className={
