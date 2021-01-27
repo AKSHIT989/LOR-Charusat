@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import { createPopper } from "@popperjs/core";
+
 
 const NotificationDropdown = () => {
   // dropdown props
