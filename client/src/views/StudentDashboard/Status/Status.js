@@ -54,7 +54,9 @@ function Status() {
     ],
   ];
 
-  return <CardTable header={header} body={body} />;
+  const title = "Approve Status"
+
+  return <CardTable title={title} header={header} body={body} />;
 }
 
 export default Status;

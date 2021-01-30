@@ -57,8 +57,10 @@ function LorRequest() {
       </a>,
     ],
   ];
+  
+  const title = "LOR Request";
 
-  return <CardTable header={header} body={body} />;
+  return <CardTable title={title} header={header} body={body} />;
 }
 
 export default LorRequest;
