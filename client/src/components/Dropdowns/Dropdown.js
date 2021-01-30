@@ -1,15 +1,15 @@
-import React, { Component } from "react";
+import React from "react";
 import { createPopper } from "@popperjs/core";
 
-
-const NotificationDropdown = () => {
+import Team1 from '../../assets/img/team-1-800x800.jpg'
+const UserDropdown = () => {
   // dropdown props
   const [dropdownPopoverShow, setDropdownPopoverShow] = React.useState(false);
   const btnDropdownRef = React.createRef();
   const popoverDropdownRef = React.createRef();
   const openDropdownPopover = () => {
     createPopper(btnDropdownRef.current, popoverDropdownRef.current, {
-      placement: "left-start",
+      placement: "bottom-start",
     });
     setDropdownPopoverShow(true);
   };
@@ -19,7 +19,7 @@ const NotificationDropdown = () => {
   return (
     <>
       <a
-        className="text-gray-600 py-1 px-3"
+        className="text-gray-600 block"
         href="#pablo"
         ref={btnDropdownRef}
         onClick={(e) => {
@@ -27,7 +27,15 @@ const NotificationDropdown = () => {
           dropdownPopoverShow ? closeDropdownPopover() : openDropdownPopover();
         }}
       >
-        <i className="fas fa-ellipsis-v"></i>
+        <div className="items-center flex">
+          <span className="w-12 h-12 text-sm text-white bg-gray-300 inline-flex items-center justify-center rounded-full">
+            <img
+              alt="..."
+              className="w-full rounded-full align-middle border-none shadow-lg"
+              src={Team1}
+            />
+          </span>
+        </div>
       </a>
       <div
         ref={popoverDropdownRef}
@@ -43,7 +51,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Approve
+          Action
         </a>
         <a
           href="#pablo"
@@ -52,7 +60,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          View
+          Another action
         </a>
         <a
           href="#pablo"
@@ -61,11 +69,21 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Download
+          Something else here
+        </a>
+        <div className="h-0 my-2 border border-solid border-gray-200" />
+        <a
+          href="#pablo"
+          className={
+            "text-sm py-2 px-4 font-normal block w-full whitespace-no-wrap bg-transparent text-gray-800"
+          }
+          onClick={(e) => e.preventDefault()}
+        >
+          Seprated link
         </a>
       </div>
     </>
   );
 };
 
-export default NotificationDropdown;
+export default UserDropdown;

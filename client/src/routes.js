@@ -18,7 +18,7 @@ function routes() {
                 <Route path="/hod" component={Hod} />
                 <Route path="/tpr" component={Tpr} />
                 <Route path="/admin" component={Admin} />
-                <Redirect from="/" to="/auth" />
+                <Redirect from="/" to="/faculty" />
             </Switch>
         </BrowserRouter>
     )
