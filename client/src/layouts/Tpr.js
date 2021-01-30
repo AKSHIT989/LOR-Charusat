@@ -11,7 +11,7 @@ import profile from "../assets/img/team-1-800x800.jpg";
 
 function Tpr() {
     const tprHeader = [
-        { icon: `fas fa-envelope-open-text`, text: "Approve LOR Request", link: "/tpr/request" },
+        { icon: `fas fa-envelope-open-text`, text: "LOR Requests", link: "/tpr/request" },
         { icon: `far fa-chart-bar`, text: "Report", link: "/tpr/report" },
         { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
       ];

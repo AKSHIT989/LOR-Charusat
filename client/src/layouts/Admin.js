@@ -9,9 +9,16 @@ import UserManage from '../views/AdminDashboard/UserManage/UserManage'
 import Report from '../views/AdminDashboard/Report/Report'
 
 function Admin() {
+    const adminHeader = [
+        { icon: `fas fa-user-plus`, text: "User Creation", link: "/admin/user-create" },
+        // { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/faculty/draft" },
+        { icon: `fas fa-users-cog`, text: "User Management", link: "/admin/user-manage" },
+        { icon: `far fa-chart-bar`, text: "Report", link: "/admin/report" },
+        { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
+    ];
     return (
         <>
-        <Sidebar />
+        <Sidebar navs={adminHeader}/>
         <div className="relative md:ml-64 bg-gray-200">
             <AdminNavbar />
 

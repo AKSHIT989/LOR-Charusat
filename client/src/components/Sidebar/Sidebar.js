@@ -15,6 +15,7 @@ export default function Sidebar({ navs , profile}) {
         key={`nav${index}`}
         style={{ display: "inline-block" }}
       >
+
         <Link
           className={
             "text-base py-3 font-bold block " +
@@ -65,6 +66,7 @@ export default function Sidebar({ navs , profile}) {
             >
               LOR-Charusat
             </span>
+
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">

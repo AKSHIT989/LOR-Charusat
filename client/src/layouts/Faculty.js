@@ -6,14 +6,14 @@ import HeaderStats from "../components/Headers/HeaderStats.js";
 
 import Request from '../views/FacultyDashboard/Request/LorRequest'
 import Report from '../views/FacultyDashboard/Report/Report'
-import DraftStatus from '../views/FacultyDashboard/DraftStatus/DraftStatus'
+import Profile from '../views/FacultyDashboard/Profile/Profile'
 
 import profile from "../assets/img/team-1-800x800.jpg";
 
 function Faculty() {
     const facultyHeader = [
-        { icon: `fas fa-envelope-open-text`, text: "LOR Request Form", link: "/faculty/request" },
-        { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/faculty/draft" },
+        { icon: `fas fa-envelope-open-text`, text: "LOR Requests", link: "/faculty/request" },
+        // { icon: `fas fa-envelope-open`, text: "LOR Draft Status", link: "/faculty/draft" },
         { icon: `far fa-chart-bar`, text: "Report", link: "/faculty/report" },
         { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
       ];
@@ -28,7 +28,7 @@ function Faculty() {
                 <Switch>
                     <Route path="/faculty/request" exact component={Request} />
                     <Route path="/faculty/report" exact component={Report} />
-                    <Route path="/faculty/draft" exact component={DraftStatus} />
+                    <Route path="/faculty/profile" exact component={Profile} />
                     <Redirect from="/faculty" to="/faculty/request" />
                 </Switch>
                 </div>
