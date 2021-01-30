@@ -277,6 +277,7 @@ textarea {
 [type="number"]::-webkit-inner-spin-button,
 [type="number"]::-webkit-outer-spin-button {
   height: auto;
+  -webkit-appearance: none;
 }
 
 /**
@@ -2387,6 +2388,10 @@ video {
   text-transform: uppercase;
 }
 
+.underline {
+  text-decoration: underline;
+}
+
 .no-underline {
   text-decoration: none;
 }
@@ -2436,6 +2441,10 @@ video {
 
 .w-auto {
   width: auto;
+}
+
+.w-max {
+  width: max-content;
 }
 
 .w-1\/2 {

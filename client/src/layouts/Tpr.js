@@ -7,6 +7,8 @@ import HeaderStats from "../components/Headers/HeaderStats.js";
 import Request from '../views/TprDashboard/Request/LorRequest'
 import Report from '../views/TprDashboard/Report/Report'
 
+import profile from "../assets/img/team-1-800x800.jpg";
+
 function Tpr() {
     const tprHeader = [
         { icon: `fas fa-envelope-open-text`, text: "LOR Requests", link: "/tpr/request" },
@@ -15,9 +17,9 @@ function Tpr() {
       ];
     return (
         <>
-            <Sidebar navs={tprHeader}/>
+            <Sidebar navs={tprHeader} profile={profile} />
             <div className="relative md:ml-64 bg-gray-200">
-                <AdminNavbar />
+                <AdminNavbar profile={profile} />
 
                 <HeaderStats />
                 <div className="px-4 md:px-10 mx-auto w-full -m-24">

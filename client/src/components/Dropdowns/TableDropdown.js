@@ -1,5 +1,6 @@
-import React from "react";
+import React, { Component } from "react";
 import { createPopper } from "@popperjs/core";
+
 
 const NotificationDropdown = () => {
   // dropdown props
@@ -42,7 +43,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Action
+          Approve
         </a>
         <a
           href="#pablo"
@@ -51,7 +52,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Another action
+          View
         </a>
         <a
           href="#pablo"
@@ -60,7 +61,7 @@ const NotificationDropdown = () => {
           }
           onClick={(e) => e.preventDefault()}
         >
-          Something else here
+          Download
         </a>
       </div>
     </>
