@@ -8,6 +8,8 @@ import Request from '../views/FacultyDashboard/Request/LorRequest'
 import Report from '../views/FacultyDashboard/Report/Report'
 import Profile from '../views/FacultyDashboard/Profile/Profile'
 
+import profile from "../assets/img/team-1-800x800.jpg";
+
 function Faculty() {
     const facultyHeader = [
         { icon: `fas fa-envelope-open-text`, text: "LOR Requests", link: "/faculty/request" },
@@ -17,9 +19,9 @@ function Faculty() {
       ];
     return (
         <>
-            <Sidebar navs={facultyHeader} />
+            <Sidebar navs={facultyHeader}  profile={profile} />
             <div className="relative md:ml-64 bg-gray-200">
-                <AdminNavbar />
+                <AdminNavbar profile={profile} />
 
                 <HeaderStats />
                 <div className="px-4 md:px-10 mx-auto w-full -m-24">

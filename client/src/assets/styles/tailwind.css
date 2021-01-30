@@ -2396,6 +2396,10 @@ video {
   width: auto;
 }
 
+.w-max {
+  width: max-content;
+}
+
 .w-1\/2 {
   width: 50%;
 }

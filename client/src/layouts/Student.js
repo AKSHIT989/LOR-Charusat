@@ -10,6 +10,8 @@ import LorRequest from '../views/StudentDashboard/LorRequest/LorRequest'
 import Admission from '../views/StudentDashboard/Admission/Admission'
 import Report from '../views/StudentDashboard/Report/Report'
 
+import profile from "../assets/img/team-1-800x800.jpg";
+
 function Student() {
     const studentHeader = [
         { icon: `fas fa-home`, text: "LOR Status", link: "/student/status" },
@@ -22,9 +24,9 @@ function Student() {
 
     return (
         <>
-            <Sidebar navs={studentHeader}/>
+            <Sidebar navs={studentHeader} profile={profile} />
             <div className="relative md:ml-64 bg-gray-200">
-                <AdminNavbar />
+                <AdminNavbar profile={profile} />
 
                 <HeaderStats />
                 <div className="px-4 md:px-10 mx-auto w-full -m-24">
