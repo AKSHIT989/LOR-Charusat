@@ -1,5 +1,6 @@
 import React from "react";
 import CardTable from "../../../components/Cards/CardTable";
+
 // import MaterialTable from 'material-table';
 
 function LorRequest() {
@@ -12,6 +13,7 @@ function LorRequest() {
   ];
 
   const body = [
+
     [{no: "1", id:"17CE001", name:"Navdeep Dadhania", sem:"6", other:"View"}],
     [{no:"2", id:"17CE002", name:"Nihal Shaikh", sem:"6", other:"View"}],
     [{no:"3", id:"17CE003", name:"Akshit Soneji", sem:"6", other:"View"}],
@@ -60,4 +62,3 @@ function LorRequest() {
 
 
 export default LorRequest;
-

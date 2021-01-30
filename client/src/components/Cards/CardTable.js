@@ -78,7 +78,7 @@ export default function CardTable({ color, title, header, body }) {
           </td>
         </>
       );
-    });
+});
     return <tr key={`r${rowIndex}`}>{tdElements}</tr>;
   });
 
@@ -90,7 +90,7 @@ export default function CardTable({ color, title, header, body }) {
           (color === "light" ? "bg-white" : "bg-blue-900 text-white")
         }
       >
-        <div className="rounded-t mb-0 px-4 py-3 border-0">
+        {/* <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3
@@ -103,7 +103,7 @@ export default function CardTable({ color, title, header, body }) {
               </h3>
             </div>
           </div>
-        </div>
+        </div> */}
         <div className="block w-full overflow-x-auto">
           {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
@@ -125,4 +125,3 @@ CardTable.defaultProps = {
 CardTable.propTypes = {
   color: PropTypes.oneOf(["light", "dark"]),
 };
-

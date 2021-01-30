@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CardTable from "../../../components/Cards/CardTable";
 
-function LorRequest() {
+function DraftStatus() {
   let i = 0;
   let stateInit = {};
   // Consider values from DB
@@ -32,7 +32,9 @@ function LorRequest() {
       "Req 1",
       "17CE001",
       "Navdeep Dadhania",
-      "Verified by Counsellor",
+      <>
+        <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
+      </>,
       <>
         <input
           value={state[`i${i}`]}
@@ -55,7 +57,9 @@ function LorRequest() {
       "Req 2",
       "17CE002",
       "Nihal Shaikh",
-      "Verified by TPR",
+      <>
+        <i className="fas fa-circle text-green-500 mr-2"></i> Complete
+      </>,
       <>
         <input
           value={state[`i${i}`]}
@@ -78,7 +82,9 @@ function LorRequest() {
       "Req 3",
       "17CE003",
       "Akshit Soneji",
-      "Verified by Counsellor, TPR",
+      <>
+        <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
+      </>,
       <>
         <input
           value={state[`i${i}`]}
@@ -98,7 +104,8 @@ function LorRequest() {
       </a>,
     ],
   ];
+
   return <CardTable header={header} body={body} />;
 }
 
-export default LorRequest;
+export default DraftStatus;

@@ -19,6 +19,7 @@ function Student() {
         { icon: `far fa-chart-bar`, text: "Report", link: "/student/report" },
         { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
       ];
+
     return (
         <>
             <Sidebar navs={studentHeader}/>
