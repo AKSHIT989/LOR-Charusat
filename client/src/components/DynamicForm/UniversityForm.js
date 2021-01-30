@@ -120,7 +120,7 @@ export default class UniversityForm extends React.Component{
               selected={context.state.items[i].intakeDate}
               onChange={ date=>{
                 var items = context.state.items;
-                items[i].intakeDate = date.get;
+                items[i].intakeDate = date;
                 context.setState({
                   items: items
                 });

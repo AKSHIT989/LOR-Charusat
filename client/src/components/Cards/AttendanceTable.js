@@ -118,7 +118,7 @@ export default function AttendanceTable({ color }) {
                 </td> */}
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px-2 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -126,7 +126,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -134,7 +134,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -142,7 +142,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -150,7 +150,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -158,7 +158,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -166,7 +166,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -174,7 +174,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px- align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -203,7 +203,7 @@ export default function AttendanceTable({ color }) {
                 </td> */}
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px-2 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -211,7 +211,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -219,7 +219,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -227,7 +227,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -235,7 +235,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -243,7 +243,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -251,7 +251,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"
@@ -259,7 +259,7 @@ export default function AttendanceTable({ color }) {
                 </td>
                 <td className="border-t-0 px-4 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4">
                 <input
-                        type="text"
+                        type="number"
                         className="px- py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                         // placeholder="Enter ID No. here "
                         // defaultValue="Enter your ID No. here"

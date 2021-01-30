@@ -101,7 +101,7 @@ export default class ExamForm extends React.Component {
             </td>
             <td>
             <input
-                type="text"
+                type="number"
                 className="px-2 py-2 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                 placeholder="Enter marks here"
                 // value={o}

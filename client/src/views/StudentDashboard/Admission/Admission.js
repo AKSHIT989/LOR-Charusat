@@ -7,7 +7,8 @@ import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import '../../../assets/styles/external.css'
 import 'react-phone-number-input/style.css'
-import PhoneInput from 'react-phone-number-input'
+import PhoneInput from 'react-phone-input-2'
+import 'react-phone-input-2/lib/style.css'
 import ExamForm from "../../../components/DynamicForm/ExamForm"
 import UniversityForm from "../../../components/DynamicForm/UniversityForm"
 import "react-datepicker/dist/react-datepicker.css"
@@ -124,16 +125,12 @@ function Admission({history}) {
                     >
                         User Mobile Number
                     </label>
-                    <div className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    >
-                    
                     <PhoneInput
-                        defaultCountry="IN"    
+                    inputClass="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
+                        country= "in" 
+                        inputStyle={{width:"100%"}}
                         placeholder="Enter phone number"
-                        // maxLength="11"
-                        value={userPhoneNumber}
-                        onChange={setUserPhoneNumber}/>
-                    </div>
+                        value={userPhoneNumber}/>
                     </div>
                 </div>
                 <div className="w-full lg:w-6/12 px-4">
@@ -144,17 +141,15 @@ function Admission({history}) {
                     >
                         Parent's Mobile Number
                     </label>
-                    <div className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    >
                     <PhoneInput
-                        defaultCountry="IN"    
+                        country="in"
+                        enableSearch={true}
+                        inputStyle={{width:"100%"}}
                         placeholder="Enter phone number"
-                        maxLength="11"
                         value={parentPhoneNumber}
                         onChange={setParentPhoneNumber}/>
                     </div>
                     </div>
-                </div>
                 </div>
 
                 <hr className="mt-6 border-b-1 border-gray-400" />
