@@ -13,10 +13,10 @@ import UserManage from '../views/HodDashboard/UserManage/UserManage'
 
 function Hod() {
     const hodHeader = [
-        { icon: `fas fa-envelope-open-text`, text: "Approve LOR Request", link: "/hod/request" },
+        { icon: `fas fa-envelope-open-text`, text: "LOR Requests", link: "/hod/requests-action" },
         { icon: `far fa-chart-bar`, text: "Report", link: "/hod/report" },
-        { icon: `fas fa-user-plus`, text: "User Creation", link: "/hod/user-creation" },
-        { icon: `fas fa-users-cog`, text: "User Management", link: "/hod/user-management" },
+        { icon: `fas fa-user-plus`, text: "User Creation", link: "/hod/user-create" },
+        { icon: `fas fa-users-cog`, text: "User Management", link: "/hod/user-manage" },
         { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
       ];
     return (
