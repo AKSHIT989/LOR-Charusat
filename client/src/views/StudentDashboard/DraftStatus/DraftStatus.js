@@ -30,7 +30,9 @@ function DraftStatus() {
     ],
   ];
 
-  return <CardTable header={header} body={body} />;
+  const title = "LOR Draft Status"
+
+  return <CardTable title={title} header={header} body={body} />;
 }
 
 export default DraftStatus;

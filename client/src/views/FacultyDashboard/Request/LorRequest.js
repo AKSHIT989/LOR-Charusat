@@ -86,7 +86,7 @@ function LorRequest() {
     ],
   ];
 
-  const title = "LOR Request List";
+  const title = "LOR Request";
 
   return (
     <>

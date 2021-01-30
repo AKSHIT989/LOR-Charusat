@@ -58,7 +58,9 @@ function Status() {
     ],
   ];
 
-  return <CardTable title="LOR Requests" header={header} body={body} />;
+  const title = "Approve Status"
+
+  return <CardTable title={title} header={header} body={body} />;
 }
 
 export default Status;
