@@ -5,6 +5,7 @@ function Status() {
   const header = [
     "Request Id",
     "Request Name",
+    "Date",
     "Status",
     "Download LOR Request Form",
   ];
@@ -13,6 +14,7 @@ function Status() {
     [
       "Req 1",
       "LOR Request for Further Study",
+      "25/12/20",
       <>
         <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
       </>,
@@ -27,6 +29,7 @@ function Status() {
     [
       "Req 2",
       "LOR Request for Further Study",
+      "10/1/21",
       <>
         <i className="fas fa-circle text-green-500 mr-2"></i> Completed
       </>,
@@ -41,6 +44,7 @@ function Status() {
     [
       "Req 3",
       "LOR Request for Further Study",
+      "20/1/21",
       <>
         <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
       </>,
@@ -54,7 +58,7 @@ function Status() {
     ],
   ];
 
-  return <CardTable header={header} body={body} />;
+  return <CardTable title="LOR Requests" header={header} body={body} />;
 }
 
 export default Status;
