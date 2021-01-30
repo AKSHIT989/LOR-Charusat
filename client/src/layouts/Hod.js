@@ -59,11 +59,11 @@ function Hod() {
   return (
     <>
       <Sidebar navs={hodHeader}  profile={profile} />
-      <div className="relative md:ml-64 bg-gray-200">
+      <div className="relative md:ml-64">
         <AdminNavbar profile={profile} />
 
         <HeaderStats />
-        <div className="px-4 py-4 md:px-10 mx-auto w-full -m-24 flex align-center justify-center">
+        <div className="px-4 py-4 md:px-10 mx-auto w-full -m-24">
           <Switch>
             {/* <Route path="/hod/requests-action" exact component={RequestsAction} /> */}
             <Route path="/hod/request" exact component={LorRequest} />

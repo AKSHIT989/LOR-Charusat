@@ -3,12 +3,10 @@ import PropTypes from "prop-types";
 
 // components
 
-import TableDropdown from "../Dropdowns/TableDropdown.js";
-// import TableDropdown from "../../assets";
-import Argon from "../../assets/img/bootstrap.jpg";
+// import TableDropdown from "components/Dropdowns/TableDropdown.js";
 
 export default function CardTable({ color, title, header, body }) {
-  const thElements = header.map((headerName, index) => {
+  const thElements = header.map((cell, index) => {
     return (
       <th
         className={
@@ -16,69 +14,21 @@ export default function CardTable({ color, title, header, body }) {
           (color === "light"
             ? "bg-gray-100 text-gray-600 border-gray-200"
             : "bg-blue-800 text-blue-300 border-blue-700")
-        }
-        key={`h${index}`}
+        } key={`h${index}`}
       >
-        {headerName}
+        {cell}
       </th>
     );
   });
 
   const trElements = body.map((row, rowIndex) => {
     const tdElements = row.map((cell, colIndex) => {
-      return (
-        <>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-no-wrap p-4">
-            <span
-              className={
-                "ml-3 font-bold " +
-                +(color === "light" ? "text-gray-700" : "text-white")
-              }
-            >
-              {rowIndex}
-            </span>
+        return (
+          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 text-xs whitespace-no-wrap p-4" key={`r${rowIndex}c${colIndex}`}>
+            {cell}  
           </td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0  whitespace-no-wrap p-4">
-            <span
-              className={
-                "ml-3 font-bold " +
-                +(color === "light" ? "text-gray-700" : "text-white")
-              }
-            >
-              {cell.id}
-            </span>
-          </td>
-          <th className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-4 text-left flex items-center">
-            <img
-              src={Argon}
-              className="h-12 w-12 bg-white rounded-full border"
-              alt="..."
-            ></img>{" "}
-            <span
-              className={
-                "ml-3 font-bold " +
-                +(color === "light" ? "text-gray-700" : "text-white")
-              }
-            >
-              {cell.name}
-            </span>
-          </th>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-4">
-            <span
-              className={
-                "ml-3 font-bold " +
-                +(color === "light" ? "text-gray-700" : "text-white")
-              }
-            >
-              {cell.sem}
-            </span>
-          </td>
-          <td className="border-t-0 px-6 align-middle border-l-0 border-r-0 whitespace-no-wrap p-4 text-center">
-            <TableDropdown />
-          </td>
-        </>
-      );
-});
+        );
+    });
     return <tr key={`r${rowIndex}`}>{tdElements}</tr>;
   });
 
@@ -90,7 +40,7 @@ export default function CardTable({ color, title, header, body }) {
           (color === "light" ? "bg-white" : "bg-blue-900 text-white")
         }
       >
-        {/* <div className="rounded-t mb-0 px-4 py-3 border-0">
+        <div className="rounded-t mb-0 px-4 py-3 border-0">
           <div className="flex flex-wrap items-center">
             <div className="relative w-full px-4 max-w-full flex-grow flex-1">
               <h3
@@ -103,14 +53,18 @@ export default function CardTable({ color, title, header, body }) {
               </h3>
             </div>
           </div>
-        </div> */}
+        </div>
         <div className="block w-full overflow-x-auto">
           {/* Projects table */}
           <table className="items-center w-full bg-transparent border-collapse">
             <thead>
-              <tr>{thElements}</tr>
+              <tr>
+                {thElements}
+              </tr>
             </thead>
-            <tbody>{trElements}</tbody>
+            <tbody>
+              {trElements}
+            </tbody>
           </table>
         </div>
       </div>

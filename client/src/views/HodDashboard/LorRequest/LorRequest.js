@@ -1,24 +1,9 @@
-import React, { useState } from "react";
+import React from "react";
 import CardTable from "../../../components/Cards/CardTable";
 
 function LorRequest() {
-  let i = 0;
-  let stateInit = {};
-  // Consider values from DB
-  let inputValues = ["Change in line 22...", "Change in line 23...", "N/A"];
-  inputValues.forEach((value, index) => {
-    stateInit[`i${index}`] = value;
-  });
-
-  const [state, setState] = useState(stateInit);
-  const handleChange = (event) => {
-    setState({
-      ...state,
-      [event.target.name]: event.target.value,
-    });
-  };
-
   const header = [
+    "#",
     "Request Id",
     "Student Id",
     "Student Name",
@@ -29,16 +14,16 @@ function LorRequest() {
 
   const body = [
     [
+      <input type="checkbox" />,
       "Req 1",
       "17CE001",
       "Navdeep Dadhania",
       "Verified by Counsellor",
       <>
         <input
-          value={state[`i${i}`]}
-          name={`i${i++}`}
+          defaultValue={"Change on line 22..."}
+          name={""}
           className="border-none outline-none h-10"
-          onChange={handleChange}
         />
         <br />
         <input type="file" />
@@ -52,16 +37,16 @@ function LorRequest() {
       </a>,
     ],
     [
+      <input type="checkbox" />,
       "Req 2",
       "17CE002",
       "Nihal Shaikh",
       "Verified by TPR",
       <>
         <input
-          value={state[`i${i}`]}
-          name={`i${i++}`}
+          defaultValue={"Change on line 23..."}
+          name={``}
           className="border-none outline-none h-10"
-          onChange={handleChange}
         />
         <br />
         <input type="file" />
@@ -75,16 +60,15 @@ function LorRequest() {
       </a>,
     ],
     [
+      <input type="checkbox" />,
       "Req 3",
       "17CE003",
       "Akshit Soneji",
       "Verified by Counsellor, TPR",
       <>
         <input
-          value={state[`i${i}`]}
-          name={`i${i++}`}
+          defaultValue={"N/A"}
           className="border-none outline-none h-10"
-          onChange={handleChange}
         />
         <br />
         <input type="file" />
@@ -98,7 +82,21 @@ function LorRequest() {
       </a>,
     ],
   ];
-  return <CardTable header={header} body={body} />;
+
+  const title = "LOR Request List";
+
+  
+  return (
+    <>
+      <CardTable title={title} header={header} body={body} />
+      <button
+        className="bg-blue-500 w-max float-right text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+        type="button"
+      >
+        Approve
+      </button>
+    </>
+  );
 }
 
 export default LorRequest;

@@ -20,7 +20,7 @@ function Faculty() {
     return (
         <>
             <Sidebar navs={facultyHeader}  profile={profile} />
-            <div className="relative md:ml-64 bg-gray-200">
+            <div className="relative md:ml-64">
                 <AdminNavbar profile={profile} />
 
                 <HeaderStats />
