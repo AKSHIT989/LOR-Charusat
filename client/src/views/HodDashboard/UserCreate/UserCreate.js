@@ -1,15 +1,31 @@
 import React, { useRef, useState } from "react";
 
-function UserCreate({ fields }) {
-  const [state, setState] = useState("Counsellor Name");
+function UserCreate() {
   const selectRef = useRef(null);
-  const handleOnChange = (event) => {
+  const [state, setState] = useState({
+    select: "Counsellor Name",
+    id: "",
+    name: "",
+    department: "",
+    institute: "",
+    hodCounsName: "",
+  });
+
+  const handleChangeOnSelect = (event) => {
     event.stopPropagation();
     if (selectRef.current.value === "Student") {
-      setState("Counsellor Name");
+      setState({ ...state, select: "Counsellor Name" });
     } else if (selectRef.current.value === "Faculty") {
-      setState("HOD Name");
+      setState({ ...state, select: "HOD Name" });
     }
+  };
+
+  const handleChangeOnInput = (event) => {
+    event.stopPropagation();
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
   };
 
   return (
@@ -27,7 +43,7 @@ function UserCreate({ fields }) {
             <div className="relative mt-3 mb-6 flex justify-end align-center px-4">
               <select
                 ref={selectRef}
-                onChange={handleOnChange}
+                onChange={handleChangeOnSelect}
                 className="bg-gray-200 focus:outline-none cursor-pointer"
               >
                 <option>Student</option>
@@ -45,9 +61,11 @@ function UserCreate({ fields }) {
                   </label>
                   <input
                     type="text"
+                    name="id"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                     placeholder="Enter Id here "
-                    // defaultValue="Enter your ID No. here"
+                    value={state.id}
+                    onChange={handleChangeOnInput}
                   />
                 </div>
               </div>
@@ -60,10 +78,12 @@ function UserCreate({ fields }) {
                     Name
                   </label>
                   <input
-                    type="email"
+                    type="text"
+                    name="name"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    // defaultValue="jesse@example.com"
+                    value={state.name}
                     placeholder="Enter Name here"
+                    onChange={handleChangeOnInput}
                   />
                 </div>
               </div>
@@ -77,9 +97,11 @@ function UserCreate({ fields }) {
                   </label>
                   <input
                     type="text"
+                    name="department"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    // defaultValue="Lucky"
+                    value={state.department}
                     placeholder="Enter Department here"
+                    onChange={handleChangeOnInput}
                   />
                 </div>
               </div>
@@ -93,9 +115,11 @@ function UserCreate({ fields }) {
                   </label>
                   <input
                     type="text"
+                    name="institute"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    // defaultValue="Jesse"
+                    value={state.institute}
                     placeholder="Enter Institute here"
+                    onChange={handleChangeOnInput}
                   />
                 </div>
               </div>
@@ -103,15 +127,17 @@ function UserCreate({ fields }) {
                 <div className="relative w-full mb-3">
                   <label
                     className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                    htmlFor={state}
+                    htmlFor="hodCounsName"
                   >
-                    {state}
+                    {state.select}
                   </label>
                   <input
                     type="text"
+                    name="hodCounsName"
                     className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                    // defaultValue="Jesse"
+                    value={state.hodCounsName}
                     placeholder="Enter Counsellor Name here"
+                    onChange={handleChangeOnInput}
                   />
                 </div>
               </div>

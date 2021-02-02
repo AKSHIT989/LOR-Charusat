@@ -1,136 +1,169 @@
-import React from "react";
+import React, { useState } from "react";
 import CardTable from "../../../components/Cards/CardTable";
 
-// import MaterialTable from 'material-table';
+const RemarkElement = ({ value, name }) => {
+  const [state, setState] = useState({ value: value });
 
-function LorRequest() {
-  const header = [
-    "#",
-    "No.",
-    "Student Id",
-    "Student Name",
-    "Semester",
-    "Remarks",
-    "View Details",
-  ];
+  const handleChange = (event) => {
+    event.stopPropagation();
+    setState({ ...state, value: event.target.value });
+  };
 
-  const body = [
-    [
-      <input type="checkbox" />,
-      "Req 1",
-      "17CE001",
-      "Navdeep Dadhania",
-      3,
-      <>
-        <input
-          defaultValue={"Change on line 22..."}
-          name={""}
-          className="border-none outline-none h-10"
-        />
-        <br />
-        <input type="file" />
-      </>,
-      <a
-        className="text-blue-500 underline"
-        target="_blank"
-        href="/redirect/https://www.google.com"
-      >
-        View
-      </a>,
-    ],
-    [
-      <input type="checkbox" />,
-      "Req 2",
-      "17CE002",
-      "Nihal Shaikh",
-      3,
-      <>
-        <input
-          defaultValue={"Change on line 23..."}
-          name={""}
-          className="border-none outline-none h-10"
-        />
-        <br />
-        <input type="file" />
-      </>,
-      <a
-        className="text-blue-500 underline"
-        target="_blank"
-        href="/redirect/https://www.google.com"
-      >
-        View
-      </a>,
-    ],
-    [
-      <input type="checkbox" />,
-      "Req 3",
-      "17CE003",
-      "Akshit Soneji",
-      3,
-      <>
-        <input
-          defaultValue={"N/A"}
-          name={""}
-          className="border-none outline-none h-10"
-        />
-        <br />
-        <input type="file" />
-      </>,
-      <a
-        className="text-blue-500 underline"
-        target="_blank"
-        href="/redirect/https://www.google.com"
-      >
-        View
-      </a>,
-    ],
-  ];
-
-  const title = "LOR Request";
+  const handleChangeOnBlur = (event) => {
+    event.stopPropagation();
+    // PUT Request to update value of remark
+    // console.log(`${parseInt(event.target.name.substr(6))}: ${state.value}`);
+  };
 
   return (
     <>
-      <CardTable title={title} header={header} body={body} />
-      <button
-        className="bg-blue-500 w-max float-right text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-        type="button"
-      >
-        Approve
-      </button>
+      <input
+        value={state.value}
+        name={name}
+        className="border-none outline-none h-10"
+        onChange={handleChange}
+        onBlur={handleChangeOnBlur}
+      />
+      <br />
+      <input type="file" />
     </>
   );
-}
+};
 
-// function LorRequest() {
-//   return (
-//     <MaterialTable
-//       title="Actions On Selected Rows Preview"
-//       columns={[
-//         { title: 'Name', field: 'name' },
-//         { title: 'Surname', field: 'surname' },
-//         { title: 'Birth Year', field: 'birthYear', type: 'numeric' },
-//         {
-//           title: 'Birth Place',
-//           field: 'birthCity',
-//           lookup: { 34: 'İstanbul', 63: 'Şanlıurfa' },
-//         },
-//       ]}
-//       data={[
-//         { name: 'Mehmet', surname: 'Baran', birthYear: 1987, birthCity: 63 },
-//         { name: 'Zerya Betül', surname: 'Baran', birthYear: 2017, birthCity: 34 },
-//       ]}
-//       options={{
-//         selection: true
-//       }}
-//       actions={[
-//         {
-//           tooltip: 'Remove All Selected Users',
-//           icon: 'delete',
-//           onClick: (evt, data) => alert('You want to delete ' + data.length + ' rows')
-//         }
-//       ]}
-//     />
-//   )
-// }
+const LinkElement = ({name}) => (
+  <a
+    className="text-blue-500 underline"
+    target="_blank"
+    href="/redirect/https://www.google.com"
+  >
+    {name}
+  </a>
+);
+
+class LorRequest extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: [],
+    };
+
+    this.getData = this.getData.bind(this);
+    this.processData = this.processData.bind(this);
+    this.handleCickOnButton = this.handleCickOnButton.bind(this);
+    this.handleClickOnCheckBox = this.handleClickOnCheckBox.bind(this);
+    this.checkAllCheckboxes = this.checkAllCheckboxes.bind(this);
+
+    this.checkboxRefs = { header: React.createRef(), body: [] };
+    this.header = [
+      <input
+        type="checkbox"
+        ref={this.checkboxRefs.header}
+        onClick={this.checkAllCheckboxes}
+      />,
+      "Request Id",
+      "Student Id",
+      "Student Name",
+      "Semester",
+      "Remarks",
+      "View/Download LOR",
+    ];
+
+    this.title = "LOR Request";
+    this.count = 0;
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  async getData() {
+    try {
+      const response = await fetch("http://localhost:3000/faculty");
+      const data = await response.json();
+      this.processData(data.requests);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  processData(data) {
+    this.checkboxRefs.body = [];
+    const body = data.map((request, index) => {
+      let row = [];
+      this.checkboxRefs.body.push(React.createRef());
+
+      row.push(
+        <input
+          type="checkbox"
+          ref={this.checkboxRefs.body[index]}
+          onClick={(event) => {
+            this.handleClickOnCheckBox(event, index);
+          }}
+        />
+      );
+      row.push(`Req ${request["req-id"]}`);
+      row.push(request["stu-id"]);
+      row.push(request["stu-name"]);
+      row.push(request["semester"]);
+      row.push(
+        <RemarkElement value={request["remarks"]} name={`remark${index}`} />
+      );
+      row.push(<LinkElement name={"View/Download"} />);
+      return row;
+    });
+    this.setState({ body: body });
+  }
+
+  handleCickOnButton(event) {
+    event.stopPropagation();
+    // DELETE request to server
+    // GET request to server { getData() }
+  }
+
+  handleClickOnCheckBox(event, index) {
+    event.stopPropagation();
+    this.checkboxRefs.header.current.checked = false;
+    if (event.target.checked) {
+      this.count++;
+    } else {
+      this.count--;
+    }
+    if (this.count === this.checkboxRefs.body.length) {
+      this.checkboxRefs.header.current.checked = true;
+    }
+  }
+
+  checkAllCheckboxes(event) {
+    event.stopPropagation();
+    this.checkboxRefs.body.forEach((checkbox, index) => {
+      checkbox.current.checked = event.target.checked;
+    });
+
+    if (event.target.checked) {
+      this.count = this.checkboxRefs.body.length;
+    } else {
+      this.count = 0;
+    }
+  }
+
+  render() {
+    return (
+      <>
+        <CardTable
+          title={this.title}
+          header={this.header}
+          body={this.state.body}
+        />
+        <button
+          className="bg-blue-500 w-max float-right text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+          type="button"
+          onClick={this.handleCickOnButton}
+        >
+          Approve
+        </button>
+      </>
+    );
+  }
+}
 
 export default LorRequest;
