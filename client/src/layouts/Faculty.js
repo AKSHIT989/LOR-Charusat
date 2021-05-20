@@ -6,6 +6,9 @@ import HeaderStats from "../components/Headers/HeaderStats.js";
 
 import Request from '../views/FacultyDashboard/Request/LorRequest'
 import Report from '../views/FacultyDashboard/Report/Report'
+import Profile from '../views/FacultyDashboard/Profile/Profile'
+
+import profile from "../assets/img/team-1-800x800.jpg";
 
 function Faculty() {
     const facultyHeader = [
@@ -16,15 +19,16 @@ function Faculty() {
       ];
     return (
         <>
-            <Sidebar navs={facultyHeader} />
-            <div className="relative md:ml-64 bg-gray-200">
-                <AdminNavbar />
+            <Sidebar navs={facultyHeader}  profile={profile} />
+            <div className="relative md:ml-64">
+                <AdminNavbar profile={profile} />
 
                 <HeaderStats />
                 <div className="px-4 md:px-10 mx-auto w-full -m-24">
                 <Switch>
                     <Route path="/faculty/request" exact component={Request} />
                     <Route path="/faculty/report" exact component={Report} />
+                    <Route path="/faculty/profile" exact component={Profile} />
                     <Redirect from="/faculty" to="/faculty/request" />
                 </Switch>
                 </div>

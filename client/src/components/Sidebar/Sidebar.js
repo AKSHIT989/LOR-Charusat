@@ -6,11 +6,16 @@ import { Link } from "react-router-dom";
 import NotificationDropdown from "../Dropdowns/NotificationDropdown";
 import UserDropdown from "../Dropdowns/UserDropdown";
 
-export default function Sidebar({navs}) {
+export default function Sidebar({ navs , profile}) {
   const [collapseShow, setCollapseShow] = React.useState("hidden");
   const liElements = navs.map((nav, index) => {
     return (
-      <li className="items-center p-2 " key={`nav${index}`} style={{display:"inline-block"}}>
+      <li
+        className="items-center p-2 "
+        key={`nav${index}`}
+        style={{ display: "inline-block" }}
+      >
+
         <Link
           className={
             "text-base py-3 font-bold block " +
@@ -51,8 +56,17 @@ export default function Sidebar({navs}) {
             className="md:block text-center md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
             to={navs[0].link}
           >
-          <span className="text-2xl dashboard-logo" style={{fontFamily:"'Lobster', cursive",padding:"1em",color:"#1b7ced"}}>LOR-Charusat</span>
-           
+            <span
+              className="text-2xl dashboard-logo"
+              style={{
+                fontFamily: "'Lobster', cursive",
+                padding: "1em",
+                color: "#1b7ced",
+              }}
+            >
+              LOR-Charusat
+            </span>
+
           </Link>
           {/* User */}
           <ul className="md:hidden items-center flex flex-wrap list-none">
@@ -60,7 +74,7 @@ export default function Sidebar({navs}) {
               <NotificationDropdown />
             </li>
             <li className="inline-block relative">
-              <UserDropdown />
+              <UserDropdown profile={profile} />
             </li>
           </ul>
           {/* Collapse */}
@@ -78,7 +92,16 @@ export default function Sidebar({navs}) {
                     className="md:block text-left md:pb-2 text-gray-700 mr-0 inline-block whitespace-no-wrap text-sm uppercase font-bold p-4 px-0"
                     to="/"
                   >
-                    <span className="text-2xl" style={{fontFamily:"'Lobster', cursive",padding:"1em",color:"#1b7ced"}}>LOR-Charusat</span>
+                    <span
+                      className="text-2xl"
+                      style={{
+                        fontFamily: "'Lobster', cursive",
+                        padding: "1em",
+                        color: "#1b7ced",
+                      }}
+                    >
+                      LOR-Charusat
+                    </span>
                   </Link>
                 </div>
                 <div className="w-6/12 flex justify-end">

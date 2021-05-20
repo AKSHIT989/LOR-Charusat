@@ -1,9 +1,24 @@
-import React from "react";
+import React, { useState } from "react";
 import CardTable from "../../../components/Cards/CardTable";
 
-function LorRequest() {
+function DraftStatus() {
+  let i = 0;
+  let stateInit = {};
+  // Consider values from DB
+  let inputValues = ["Change in line 22...", "Change in line 23...", "N/A"];
+  inputValues.forEach((value, index) => {
+    stateInit[`i${index}`] = value;
+  });
+
+  const [state, setState] = useState(stateInit);
+  const handleChange = (event) => {
+    setState({
+      ...state,
+      [event.target.name]: event.target.value,
+    });
+  };
+
   const header = [
-    "#",
     "Request Id",
     "Student Id",
     "Student Name",
@@ -14,16 +29,18 @@ function LorRequest() {
 
   const body = [
     [
-      <input type="checkbox" />,
       "Req 1",
       "17CE001",
       "Navdeep Dadhania",
-      "Verified by Counsellor",
+      <>
+        <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
+      </>,
       <>
         <input
-          defaultValue={"Change on line 22..."}
-          name={""}
+          value={state[`i${i}`]}
+          name={`i${i++}`}
           className="border-none outline-none h-10"
+          onChange={handleChange}
         />
         <br />
         <input type="file" />
@@ -37,16 +54,18 @@ function LorRequest() {
       </a>,
     ],
     [
-      <input type="checkbox" />,
       "Req 2",
       "17CE002",
       "Nihal Shaikh",
-      "Verified by TPR",
+      <>
+        <i className="fas fa-circle text-green-500 mr-2"></i> Complete
+      </>,
       <>
         <input
-          defaultValue={"Change on line 23..."}
-          name={``}
+          value={state[`i${i}`]}
+          name={`i${i++}`}
           className="border-none outline-none h-10"
+          onChange={handleChange}
         />
         <br />
         <input type="file" />
@@ -60,15 +79,18 @@ function LorRequest() {
       </a>,
     ],
     [
-      <input type="checkbox" />,
       "Req 3",
       "17CE003",
       "Akshit Soneji",
-      "Verified by Counsellor, TPR",
+      <>
+        <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
+      </>,
       <>
         <input
-          defaultValue={"N/A"}
+          value={state[`i${i}`]}
+          name={`i${i++}`}
           className="border-none outline-none h-10"
+          onChange={handleChange}
         />
         <br />
         <input type="file" />
@@ -83,20 +105,7 @@ function LorRequest() {
     ],
   ];
 
-  const title = "LOR Request";
-
-  
-  return (
-    <>
-      <CardTable title={title} header={header} body={body} />
-      <button
-        className="bg-blue-500 w-max float-right text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
-        type="button"
-      >
-        Approve
-      </button>
-    </>
-  );
+  return <CardTable header={header} body={body} />;
 }
 
-export default LorRequest;
+export default DraftStatus;
