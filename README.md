@@ -1,6 +1,9 @@
 # LOR-Charusat
 Automating the process of Letter of Recommendation for CHARUSAT
 
+<img src="https://github.com/AKSHIT989/LOR-Charusat/blob/main/assets/LOR-Request%20page.png" width="100%"></h2>
+
+
 ### Process for contributing for collaborators:
 NOTE: DO NOT CHANGE THE FOLDER STRUCTURE IT WON'T BE MERGED
 1) For first time only 
