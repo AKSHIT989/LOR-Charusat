@@ -1,0 +1,119 @@
+{
+  "hod": {
+    "requests": [
+      {
+        "req-id": 1,
+        "stu-id": "17CE001",
+        "stu-name": "Navdeep Dadhania",
+        "status": "Verified by Counsellor",
+        "remarks": "Change on line 22..."
+      },
+      {
+        "req-id": 2,
+        "stu-id": "17CE002",
+        "stu-name": "Nihal Shaikh",
+        "status": "Verified by TPR",
+        "remarks": "Change on line 23..."
+      },
+      {
+        "req-id": 3,
+        "stu-id": "17CE003",
+        "stu-name": "Akshit Soneji",
+        "status": "Verified by Counsellor, TPR",
+        "remarks": "N/A"
+      }
+    ]
+  },
+  "faculty": {
+    "requests": [
+      {
+        "req-id": 1,
+        "stu-id": "17CE001",
+        "stu-name": "Navdeep Dadhania",
+        "semester": 7,
+        "remarks": "Change on line 22..."
+      },
+      {
+        "req-id": 2,
+        "stu-id": "17CE002",
+        "stu-name": "Nihal Shaikh",
+        "semester": 7,
+        "remarks": "Change on line 23..."
+      },
+      {
+        "req-id": 3,
+        "stu-id": "17CE003",
+        "stu-name": "Akshit Soneji",
+        "semester": 7,
+        "remarks": "N/A"
+      }
+    ]
+  },
+  "student": {
+    "status": [
+      {
+        "req-id": 1,
+        "req-name": "LOR Request for Further Study",
+        "date": "07/05/2020",
+        "status": "Verified by Faculty"
+      },
+      {
+        "req-id": 2,
+        "req-name": "LOR Request for Further Study",
+        "date": "10/05/2020",
+        "status": "Verified by Faculty, HOD"
+      },
+      {
+        "req-id": 3,
+        "req-name": "LOR Request for Further Study",
+        "date": "26/05/2020",
+        "status": "Verified by HOD"
+      }
+    ],
+    "draft-status": [
+      {
+        "draft-id": 1,
+        "faculty-name": "Mrugedra Rahevar",
+        "status": "Pending",
+        "remarks": "Change on line 22..."
+      },
+      {
+        "draft-id": 2,
+        "faculty-name": "Martin Parmar",
+        "status": "Completed",
+        "remarks": "Change on line 23..."
+      },
+      {
+        "draft-id": 1,
+        "faculty-name": "Ashwin Makwana",
+        "status": "Pending",
+        "remarks": "N/A"
+      }
+    ]
+  },
+  "tpr": {
+    "requests": [
+      {
+        "req-id": 1,
+        "stu-id": "17CE001",
+        "stu-name": "Navdeep Dadhania",
+        "status": "Pending",
+        "remarks": "Change on line 22..."
+      },
+      {
+        "req-id": 2,
+        "stu-id": "17CE002",
+        "stu-name": "Nihal Shaikh",
+        "status": "Completed",
+        "remarks": "Change on line 23..."
+      },
+      {
+        "req-id": 3,
+        "stu-id": "17CE003",
+        "stu-name": "Akshit Soneji",
+        "status": "Pending",
+        "remarks": "N/A"
+      }
+    ]
+  }
+}

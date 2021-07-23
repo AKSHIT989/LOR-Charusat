@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/student-draft-statuses",
+      "handler": "student-draft-status.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/student-draft-statuses/count",
+      "handler": "student-draft-status.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/student-draft-statuses/:id",
+      "handler": "student-draft-status.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/student-draft-statuses",
+      "handler": "student-draft-status.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/student-draft-statuses/:id",
+      "handler": "student-draft-status.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/student-draft-statuses/:id",
+      "handler": "student-draft-status.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

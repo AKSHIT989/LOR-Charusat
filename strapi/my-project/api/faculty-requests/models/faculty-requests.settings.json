@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "faculty-requests",
+  "info": {
+    "name": "Faculty-Requests"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "req_id": {
+      "type": "biginteger"
+    },
+    "stu_id": {
+      "type": "string"
+    },
+    "stu_name": {
+      "type": "string"
+    },
+    "semester": {
+      "type": "integer"
+    },
+    "remarks": {
+      "type": "string"
+    }
+  }
+}

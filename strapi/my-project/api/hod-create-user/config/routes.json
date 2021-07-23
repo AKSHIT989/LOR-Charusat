@@ -1,0 +1,52 @@
+{
+  "routes": [
+    {
+      "method": "GET",
+      "path": "/hod-create-users",
+      "handler": "hod-create-user.find",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hod-create-users/count",
+      "handler": "hod-create-user.count",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "GET",
+      "path": "/hod-create-users/:id",
+      "handler": "hod-create-user.findOne",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "POST",
+      "path": "/hod-create-users",
+      "handler": "hod-create-user.create",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "PUT",
+      "path": "/hod-create-users/:id",
+      "handler": "hod-create-user.update",
+      "config": {
+        "policies": []
+      }
+    },
+    {
+      "method": "DELETE",
+      "path": "/hod-create-users/:id",
+      "handler": "hod-create-user.delete",
+      "config": {
+        "policies": []
+      }
+    }
+  ]
+}

@@ -1,66 +1,82 @@
 import React from "react";
 import CardTable from "../../../components/Cards/CardTable";
 
-function Status() {
-  const header = [
-    "Request Id",
-    "Request Name",
-    "Date",
-    "Status",
-    "Download LOR Request Form",
-  ];
+const LinkElement = ({name}) => (
+  <a
+    className="text-blue-500 underline"
+    target="_blank"
+    href="/redirect/https://www.google.com"
+  >
+    {name}
+  </a>
+);
 
-  const body = [
-    [
-      "Req 1",
-      "LOR Request for Further Study",
-      "25/12/20",
-      <>
-        <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
-      </>,
-      <a
-        className="text-blue-500 underline"
-        target="_blank"
-        href="/redirect/https://www.google.com"
-      >
-        Download
-      </a>,
-    ],
-    [
-      "Req 2",
-      "LOR Request for Further Study",
-      "10/1/21",
-      <>
-        <i className="fas fa-circle text-green-500 mr-2"></i> Completed
-      </>,
-      <a
-        className="text-blue-500 underline"
-        target="_blank"
-        href="/redirect/https://www.google.com"
-      >
-        Download
-      </a>,
-    ],
-    [
-      "Req 3",
-      "LOR Request for Further Study",
-      "20/1/21",
-      <>
-        <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
-      </>,
-      <a
-        className="text-blue-500 underline"
-        target="_blank"
-        href="/redirect/https://www.google.com"
-      >
-        Download
-      </a>,
-    ],
-  ];
+class Status extends React.Component {
+  constructor(props) {
+    super(props);
+    this.state = {
+      body: [],
+    };
 
-  const title = "Approve Status"
+    this.getData = this.getData.bind(this);
+    this.processData = this.processData.bind(this);
 
-  return <CardTable title={title} header={header} body={body} />;
+    this.header = [
+      "Request Id",
+      "Request Name",
+      "Date",
+      "Status",
+      "Download LOR Request Form",
+    ];
+
+    this.title = "Approve Status";
+  }
+
+  componentDidMount() {
+    this.getData();
+  }
+
+  async getData() {
+    try {
+      const response = await fetch("http://localhost:1337/student-statuses");
+      const data = await response.json();
+      this.processData(data);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  processData(data) {
+    const body = data.map((status, index) => {
+      let row = [];
+
+      row.push(`Req ${status["req_id"]}`);
+      row.push(status["req_name"]);
+      row.push(status["date"]);
+      row.push(status["status"]);
+      row.push(<LinkElement name={"Download"} />);
+      return row;
+    });
+    this.setState({ body: body });
+  }
+
+  render() {
+    return (
+      <>
+        <CardTable
+          title={this.title}
+          header={this.header}
+          body={this.state.body}
+        />
+      </>
+    );
+  }
 }
 
 export default Status;
+
+/*
+<>
+  <i className="fas fa-circle text-orange-500 mr-2"></i> Pending
+</>
+*/
