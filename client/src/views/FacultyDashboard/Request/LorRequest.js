@@ -78,9 +78,9 @@ class LorRequest extends React.Component {
 
   async getData() {
     try {
-      const response = await fetch("http://localhost:3000/faculty");
+      const response = await fetch("http://localhost:1337/faculty-requests");
       const data = await response.json();
-      this.processData(data.requests);
+      this.processData(data);
     } catch (e) {
       console.log(e);
     }
@@ -101,9 +101,9 @@ class LorRequest extends React.Component {
           }}
         />
       );
-      row.push(`Req ${request["req-id"]}`);
-      row.push(request["stu-id"]);
-      row.push(request["stu-name"]);
+      row.push(`Req ${request["req_id"]}`);
+      row.push(request["stu_id"]);
+      row.push(request["stu_name"]);
       row.push(request["semester"]);
       row.push(
         <RemarkElement value={request["remarks"]} name={`remark${index}`} />

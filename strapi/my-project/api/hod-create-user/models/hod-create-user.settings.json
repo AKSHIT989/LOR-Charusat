@@ -1,0 +1,35 @@
+{
+  "kind": "collectionType",
+  "collectionName": "hod-create-user",
+  "info": {
+    "name": "Hod-Create-User"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "c_id": {
+      "type": "string"
+    },
+    "name": {
+      "type": "string"
+    },
+    "department": {
+      "type": "string"
+    },
+    "institute": {
+      "type": "string"
+    },
+    "counsellor_name": {
+      "type": "string"
+    },
+    "hod_name": {
+      "type": "string"
+    },
+    "role": {
+      "type": "string"
+    }
+  }
+}

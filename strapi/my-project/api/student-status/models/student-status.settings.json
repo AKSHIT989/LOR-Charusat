@@ -1,0 +1,26 @@
+{
+  "kind": "collectionType",
+  "collectionName": "student-status",
+  "info": {
+    "name": "Student-Status"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "req_id": {
+      "type": "biginteger"
+    },
+    "req_name": {
+      "type": "string"
+    },
+    "date": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    }
+  }
+}

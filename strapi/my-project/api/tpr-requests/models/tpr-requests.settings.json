@@ -1,0 +1,29 @@
+{
+  "kind": "collectionType",
+  "collectionName": "tpr-requests",
+  "info": {
+    "name": "TPR-Requests"
+  },
+  "options": {
+    "increments": true,
+    "timestamps": true,
+    "draftAndPublish": false
+  },
+  "attributes": {
+    "req_id": {
+      "type": "biginteger"
+    },
+    "stu_id": {
+      "type": "string"
+    },
+    "stu_name": {
+      "type": "string"
+    },
+    "status": {
+      "type": "string"
+    },
+    "remarks": {
+      "type": "string"
+    }
+  }
+}

@@ -28,6 +28,52 @@ function UserCreate() {
     });
   };
 
+  // Reducer
+  const addUser = async (data) => {
+    try {
+      const options = {
+        method: "POST",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify(data),
+      };
+
+      const response = await fetch(
+        `http://localhost:1337/hod-create-users/`,
+        options
+      );
+      const updatedData = await response.json();
+      console.log(updatedData);
+    } catch (e) {
+      console.log(e);
+    }
+  }
+
+  const handleClickOnButton = (event) => {
+    event.stopPropagation();
+    
+    let fieldName = '';
+    if (selectRef.current.value === "Student") {
+      fieldName = "counsellor_name";
+    } else if (selectRef.current.value === "Faculty") {
+      fieldName = "hod_name";
+    }
+
+    const data = {
+      c_id: state.id,
+      name: state.name,
+      department: state.department,
+      institute: state.institute,
+      [`${fieldName}`]: state.hodCounsName,
+      role: selectRef.current.value,
+    }
+    
+    addUser(data);
+  }
+
   return (
     <div className="w-full px-4">
       <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-200 border-0">
@@ -145,6 +191,7 @@ function UserCreate() {
             <button
               className="bg-blue-500 text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mx-4 ease-linear transition-all duration-150"
               type="button"
+              onClick={handleClickOnButton}
             >
               Submit
             </button>

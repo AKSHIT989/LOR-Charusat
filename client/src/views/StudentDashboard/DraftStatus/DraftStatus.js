@@ -30,9 +30,9 @@ class DraftStatus extends React.Component {
 
   async getData() {
     try {
-      const response = await fetch("http://localhost:3000/student");
+      const response = await fetch("http://localhost:1337/student-draft-statuses");
       const data = await response.json();
-      this.processData(data["draft-status"]);
+      this.processData(data);
     } catch (e) {
       console.log(e);
     }
@@ -42,8 +42,8 @@ class DraftStatus extends React.Component {
     const body = data.map((draftStatus, index) => {
       let row = [];
 
-      row.push(`Draft ${draftStatus["draft-id"]}`);
-      row.push(draftStatus["faculty-name"]);
+      row.push(`Draft ${draftStatus["draft_id"]}`);
+      row.push(draftStatus["faculty_name"]);
       row.push(<StatusElement status={draftStatus["status"]} />);
       row.push(draftStatus["remarks"]);
       return row;

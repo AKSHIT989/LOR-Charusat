@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import CardTable from "../../../components/Cards/CardTable";
 
-const RemarkElement = ({ value, name }) => {
+const RemarkElement = ({ value, name, index }) => {
   const [state, setState] = useState({ value: value });
 
   const handleChange = (event) => {
@@ -9,10 +9,33 @@ const RemarkElement = ({ value, name }) => {
     setState({ ...state, value: event.target.value });
   };
 
+  // Reducer
+  const updateRemark = async (data) => {
+    try {
+      const options = {
+        method: "PUT",
+        headers: {
+          "Accept": "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+        },
+        body: JSON.stringify({remarks: data}),
+      };
+
+      const response = await fetch(
+        `http://localhost:1337/hod-requests/${index}`,
+        options
+      );
+      const updatedData = await response.json();
+      console.log(updatedData);
+    } catch (e) {
+      console.log(e);
+    }
+  };
+
   const handleChangeOnBlur = (event) => {
     event.stopPropagation();
-    // PUT Request to update value of remark
-    // console.log(`${parseInt(event.target.name.substr(6))}: ${state.value}`);
+    updateRemark(state.value);
   };
 
   return (
@@ -30,7 +53,7 @@ const RemarkElement = ({ value, name }) => {
   );
 };
 
-const LinkElement = ({name}) => (
+const LinkElement = ({ name }) => (
   <a
     className="text-blue-500 underline"
     target="_blank"
@@ -78,9 +101,9 @@ class LorRequest extends React.Component {
 
   async getData() {
     try {
-      const response = await fetch("http://localhost:3000/hod");
+      const response = await fetch("http://localhost:1337/hod-requests");
       const data = await response.json();
-      this.processData(data.requests);
+      this.processData(data);
     } catch (e) {
       console.log(e);
     }
@@ -101,12 +124,16 @@ class LorRequest extends React.Component {
           }}
         />
       );
-      row.push(`Req ${request["req-id"]}`);
-      row.push(request["stu-id"]);
-      row.push(request["stu-name"]);
+      row.push(`Req ${request["req_id"]}`);
+      row.push(request["stu_id"]);
+      row.push(request["stu_name"]);
       row.push(request["status"]);
       row.push(
-        <RemarkElement value={request["remarks"]} name={`remark${index}`} />
+        <RemarkElement
+          value={request["remarks"]}
+          name={`remark${index}`}
+          index={index}
+        />
       );
       row.push(<LinkElement name={"View/Download"} />);
       return row;

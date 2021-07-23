@@ -38,9 +38,9 @@ class Status extends React.Component {
 
   async getData() {
     try {
-      const response = await fetch("http://localhost:3000/student");
+      const response = await fetch("http://localhost:1337/student-statuses");
       const data = await response.json();
-      this.processData(data.status);
+      this.processData(data);
     } catch (e) {
       console.log(e);
     }
@@ -50,8 +50,8 @@ class Status extends React.Component {
     const body = data.map((status, index) => {
       let row = [];
 
-      row.push(`Req ${status["req-id"]}`);
-      row.push(status["req-name"]);
+      row.push(`Req ${status["req_id"]}`);
+      row.push(status["req_name"]);
       row.push(status["date"]);
       row.push(status["status"]);
       row.push(<LinkElement name={"Download"} />);
