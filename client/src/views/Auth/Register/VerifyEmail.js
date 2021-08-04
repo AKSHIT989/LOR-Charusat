@@ -1,8 +1,8 @@
-import React,{useState} from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
 
 export default function VerifyEmail() {
-    const [Email, setEmail] = useState("*******@gmail.com")
+  const [Email, setEmail] = useState("*******@gmail.com");
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -10,7 +10,7 @@ export default function VerifyEmail() {
           <div className="w-full lg:w-4/12 px-4">
             <div className="relative flex flex-col min-w-0 break-words w-full mb-6 shadow-lg rounded-lg bg-gray-300 border-0">
               <div className="rounded-t mb-0 px-6 py-6">
-                <div className="text-center mb-3"> 
+                <div className="text-center mb-3">
                   <h6 className="text-gray-600 text-lg font-bold">
                     Verify your Email
                   </h6>
@@ -19,19 +19,16 @@ export default function VerifyEmail() {
                 <hr className="mt-6 border-b-1 border-gray-400" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
-                
                 <form>
-
-                
                   <div className="relative w-full mb-3">
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      We have sent a code to {Email}
-                    </label>
-                  </div>
+                    <div className="relative w-full mb-3">
+                      <label
+                        className="block text-gray-700 text-sm font-bold mb-2"
+                        htmlFor="grid-password"
+                      >
+                        We have sent a code to {Email}
+                      </label>
+                    </div>
                     <label
                       className="block uppercase text-gray-700 text-xs font-bold mb-2"
                       htmlFor="grid-password"
@@ -49,22 +46,23 @@ export default function VerifyEmail() {
                       className="block text-gray-700 text-sm font-bold mb-2"
                       htmlFor="grid-password"
                     >
-                      Didn't receive it? Please wait for few minutes or <a href="#none" className="text-blue-400">Resend Code?</a>
+                      Didn't receive it? Please wait for few minutes or{" "}
+                      <a href="#none" className="text-blue-400">
+                        Resend Code?
+                      </a>
                     </label>
                   </div>
 
                   <div className="text-right mt-6">
-                    <button
-                      className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-auto  transition-all duration-150"
-                      type="button"
-                    >
-                       <Link to="/">
+                    <Link to="/">
+                      <button
+                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-auto  transition-all duration-150"
+                        type="button"
+                      >
                         Done
+                      </button>
                     </Link>
-                    </button>
-
                   </div>
-
                 </form>
               </div>
             </div>
