@@ -1,13 +1,14 @@
-const { GraphQLString, GraphQLBoolean } = require('graphql');
+const { GraphQLString } = require('graphql');
+const { authenticateModel } = require('../models/authenticateModel');
 const { authenticateUser } = require('../resolvers/authenticateUser');
 
 exports.authenticateUser = {
-    type: GraphQLBoolean,
+    type: authenticateModel,
     args: {
         email: { type: GraphQLString },
         password: { type: GraphQLString },
     },
-    resolve(parent, args) {
+    resolve(parent, args, { headers }) {
         return authenticateUser(args.email, args.password);
     }
 };
