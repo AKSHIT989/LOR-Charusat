@@ -26,9 +26,9 @@ module.exports = {
             args.lor_requestInfo.company || null,
             args.lor_requestInfo.bond_completed || null,
             JSON.stringify(args.lor_requestInfo.academic_detail),
-            JSON.stringify(args.lor_requestInfo.competitive_exam_details),
+            JSON.stringify(args.lor_requestInfo.c_exam_details),
             args.lor_requestInfo.letter_head,
-            JSON.stringify(args.lor_requestInfo.university_preference_list),
+            JSON.stringify(args.lor_requestInfo.lor_remarks),
             JSON.stringify(args.lor_requestInfo.faculty_preference),
             "pending",
             CurrentDate,
@@ -46,6 +46,43 @@ module.exports = {
           }
         );
       });
+    } catch (err) {
+      console.log(err);
+      throw err;
+    }
+  },
+  lorRequest: async (args) => {
+    try {
+      // const userID = await User.findOne({ email: args.userInput.email });
+
+      // if (userID) {
+      //   throw new Error("User exists already.");
+      // }
+
+      let mylorRequest = new Promise((resolve, reject) => {
+        db.execute(
+          "SELECT * FROM lor_request WHERE user_id=? ",
+          [args.userId],
+          (err, results) => {
+            if (err) {
+              reject(err);
+            } else {
+              if (results.length !== 0) {
+                resolve(JSON.parse(JSON.stringify(results)));
+              } else {
+                reject(new Error("Error! Can't add the user"));
+              }
+            }
+          }
+        );
+      });
+
+      const result = await mylorRequest;
+      console.dir(result);
+      if (result) return result;
+      else {
+        throw new Error("Something want worng!");
+      }
     } catch (err) {
       console.log(err);
       throw err;

@@ -1,19 +1,18 @@
 const studentType = `
 type Lor_Request{
-  id: String!
-  user_id: String!
+  lor_id: Int!
+  user_id: Int!
   parent_mobile: String!
   passout_date: String!
   placed_cdpc: Boolean!
   company: String
   bond_completed: Boolean
   academic_detail: [Academic_Detail!]!
-  competitive_exam_details: [Competitive_Exam_Details!]
+  c_exam_details: [Competitive_Exam_Details!]
   letter_head: Int!
-  university_preference_list : [University_Preference_List!]
+  lor_remarks : [University_Preference_List!]
   faculty_preference: [Faculty_Preference_List!]!
   lor_status: String!
-  lor_remarks: String!
   issue_date: String!
 }
 
@@ -47,16 +46,16 @@ type Faculty_Preference_List{
 }
 
 input Lor_RequestInput {
-  user_id: String!
+  user_id: Int!
   parent_mobile: String!
   passout_date: String!
   placed_cdpc: Boolean!
   company: String
   bond_completed: Boolean
   academic_detail: [Academic_DetailInput!]!
-  competitive_exam_details: [Competitive_Exam_DetailsInput!]
+  c_exam_details: [Competitive_Exam_DetailsInput!]
   letter_head: Int!
-  university_preference_list : [University_Preference_ListInput!]
+  lor_remarks : [University_Preference_ListInput!]
   faculty_preference: [Faculty_Preference_ListInput!]!
 }
 

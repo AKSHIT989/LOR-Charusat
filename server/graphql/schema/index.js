@@ -10,7 +10,7 @@ const schema = `
 
   type RootQuery {
     userProfile : Student!
-    lorRequest : Lor_Request!
+    lorRequest(userId: Int!) : [Lor_Request!]
   }
     
   type RootMutation {
