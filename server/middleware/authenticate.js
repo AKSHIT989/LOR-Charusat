@@ -17,7 +17,7 @@ exports.authenticateToken = (headers) => {
   return jwt.verify(token, key, (err, data) => {
     if (err) {
       console.log(err);
-      return new Error("Error 403: Forbidden");
+      throw new Error("Error 403: Forbidden");
     }
     return true;
   });

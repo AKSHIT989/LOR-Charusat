@@ -8,7 +8,7 @@ exports.authenticateUser = {
         email: { type: GraphQLString },
         password: { type: GraphQLString },
     },
-    resolve(parent, args, { headers }) {
-        return authenticateUser(args.email, args.password);
+    async resolve(parent, args, { headers }) {
+        return await authenticateUser(args.email, args.password);
     }
 };

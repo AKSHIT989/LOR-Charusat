@@ -1,5 +1,6 @@
 const { GraphQLSchema, GraphQLObjectType } = require('graphql');
 const { authenticateUser } = require('./authenticateUser');
+const { lorRequest } = require('./lorRequest');
 const { refreshToken } = require('./refreshTokenSchema');
 const { addUser } = require('./addUser');
 
@@ -15,6 +16,7 @@ const rootMutation = new GraphQLObjectType({
     name: 'rootMutation',
     fields: {
         addUser,
+        lorRequest,
     }
 });
 

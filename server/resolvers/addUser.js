@@ -7,21 +7,23 @@ const generateHash = (text) => {
   return hash.update(text, "utf-8").digest("hex");
 };
 
-exports.addUser = (userInfo) => {
+exports.addUser = async (userInfo) => {
   return new Promise((resolve, reject) => {
     db.execute(
-      `INSERT INTO user(charusat_id, user_type, first_name, last_name, inst, degree, mobile, email, password) 
-                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?)`,
+      `INSERT INTO user(charusat_id, user_type, first_name, last_name, counsellor, hod, inst, degree, mobile, email, password) 
+                VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        userInfo.charusat_id,
-        userInfo.user_type,
-        userInfo.first_name,
-        userInfo.last_name,
-        userInfo.inst,
-        userInfo.degree,
-        userInfo.mobile,
-        userInfo.email,
-        generateHash(userInfo.password),
+        userInfo.charusatId || null,
+        userInfo.userType || null,
+        userInfo.firstName || null,
+        userInfo.lastName || null,
+        userInfo.counsellor || null,
+        userInfo.hod || null,
+        userInfo.inst || null,
+        userInfo.degree || null,
+        userInfo.mobile || null,
+        userInfo.email || null,
+        generateHash(userInfo.password) || null,
       ],
       (err, result) => {
         if (err) {
