@@ -8,7 +8,7 @@ exports.generateToken = (payload, options, keyFile) => {
   return jwt.sign(payload, key, options);
 };
 
-exports.authenticateToken = (headers) => {
+exports.authenticateToken = (headers, user_id, user_type) => {
   const authHeader = headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   const key = readFileSync("access-secret.key", "utf-8");
@@ -19,7 +19,11 @@ exports.authenticateToken = (headers) => {
       console.log(err);
       throw new Error("Error 403: Forbidden");
     }
-    return true;
+    if (data.user_id === user_id && data.user_type === user_type) {
+      return true;
+    } else {
+      return false;
+    }
   });
 };
 
@@ -34,11 +38,11 @@ exports.refreshToken = (email, refreshToken) => {
     }
     const accessTokenOptions = {
       expiresIn: "30min",
-      issuer: `${process.env.HOST}:${process.env.SERVER_PORT}`,
+      issuer: `${process.env.SERVER_HOST}:${process.env.SERVER_PORT}`,
     };
     const key = readFileSync("access-secret.key", "utf-8");
     const accessToken = jwt.sign({ email }, key, accessTokenOptions);
-    return { authenticated: true, accessToken };
+    return { authenticated: true, access_token: accessToken };
   });
 };
 

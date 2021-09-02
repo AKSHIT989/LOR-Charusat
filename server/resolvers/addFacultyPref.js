@@ -1,16 +1,16 @@
 const { getDBInstance } = require("./operations");
 const db = getDBInstance();
 
-exports.addFacultyPref = async (userId, facultyPref) => {
+exports.addFacultyPref = async (user_id, facultyPref) => {
   return new Promise((resolve, reject) => {
     db.execute(
       `INSERT INTO faculty_pref(user_id, faculty_name, faculty_email, upload_lor) 
           VALUES(?, ?, ?, ?)`,
       [
-        userId ? parseInt(userId) : null,
-        facultyPref.facultyName || null,
-        facultyPref.facultyEmail || null,
-        facultyPref.uploadLor || null,
+        user_id ? parseInt(user_id) : null,
+        facultyPref.faculty_name || null,
+        facultyPref.faculty_email || null,
+        facultyPref.upload_lor || null,
       ],
       (err, result) => {
         if (err) {

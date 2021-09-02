@@ -10,17 +10,17 @@ const generateHash = (text) => {
 exports.addUser = async (userInfo) => {
   return new Promise((resolve, reject) => {
     db.execute(
-      `INSERT INTO user(charusat_id, user_type, first_name, last_name, counsellor, hod, inst, degree, mobile, email, password) 
+      `INSERT INTO user(charusat_id, user_type, first_name, last_name, counsellor, hod, institute, department, mobile, email, password) 
                 VALUES(?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)`,
       [
-        userInfo.charusatId || null,
-        userInfo.userType || null,
-        userInfo.firstName || null,
-        userInfo.lastName || null,
+        userInfo.charusat_id || null,
+        userInfo.user_type || null,
+        userInfo.first_name || null,
+        userInfo.last_name || null,
         userInfo.counsellor || null,
         userInfo.hod || null,
-        userInfo.inst || null,
-        userInfo.degree || null,
+        userInfo.institute || null,
+        userInfo.department || null,
         userInfo.mobile || null,
         userInfo.email || null,
         generateHash(userInfo.password) || null,

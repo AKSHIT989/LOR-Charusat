@@ -14,7 +14,8 @@ const { facultyPreferenceInputModel } = require('../models/facultyPreferenceMode
 exports.lorRequest = {
     type: GraphQLString,
     args: {
-        userId: { type: GraphQLInt },
+        user_id: { type: GraphQLInt },
+        user_type: { type: GraphQLString },
         lorRequestInfo: { type: lorRequestInputModel },
         academicDetails: { type: GraphQLList(academicDetailsInputModel) },
         universityPreferenceList: { type: GraphQLList(universityPreferenceInputModel) },
@@ -23,14 +24,14 @@ exports.lorRequest = {
     },
     async resolve(parent, args, { headers }) {
         try {
-            if (authenticateToken(headers)) {
+            if (authenticateToken(headers, args.user_id, args.user_type)) {
                 if (args.lorRequestInfo) {
-                    await createLORRequest(args.userId, args.lorRequestInfo); 
+                    await createLORRequest(args.user_id, args.lorRequestInfo); 
                 }
                 if (args.academicDetails) {
                     args.academicDetails.forEach(async (detail) => {
                         try {
-                            await addAcademicDetails(args.userId, detail)
+                            await addAcademicDetails(args.user_id, detail)
                         } catch (err) {
                             console.log(err);
                             throw err;
@@ -40,7 +41,7 @@ exports.lorRequest = {
                 if (args.universityPreferenceList) {
                     args.universityPreferenceList.forEach(async (detail) => { 
                         try {
-                            await addUniPref(args.userId, detail)
+                            await addUniPref(args.user_id, detail)
                         } catch (err) {
                             console.log(err);
                             throw err;
@@ -50,7 +51,7 @@ exports.lorRequest = {
                 if (args.facultyPreferenceList) {
                     args.facultyPreferenceList.forEach(async (detail) => { 
                         try {
-                            await addFacultyPref(args.userId, detail)
+                            await addFacultyPref(args.user_id, detail)
                         } catch (err) {
                             console.log(err);
                             throw err;
@@ -60,7 +61,7 @@ exports.lorRequest = {
                 if (args.competitiveExamDetails) {
                     args.competitiveExamDetails.forEach(async (detail) => {
                         try {
-                            await addCompExamDetails(args.userId, detail)
+                            await addCompExamDetails(args.user_id, detail)
                         } catch (err) {
                             console.log(err);
                             throw err;
@@ -68,6 +69,8 @@ exports.lorRequest = {
                     });
                 }
                 return "LOR request executed successfully";
+            } else {
+                return new Error("Error 403: Forbidden");
             }
         } catch (err) {
             console.log(err);

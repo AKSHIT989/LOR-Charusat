@@ -10,10 +10,10 @@ exports.competitiveExamModel = new GraphQLObjectType({
   name: "competitiveExam",
   fields: () => ({
     id: { type: GraphQLString },
-    userId: { type: GraphQLInt },
-    examName: { type: GraphQLString },
+    user_id: { type: GraphQLInt },
+    exam_name: { type: GraphQLString },
     mark: { type: GraphQLFloat },
-    uploadFile: { type: GraphQLString },
+    upload_file: { type: GraphQLString },
   }),
 });
 
@@ -21,9 +21,9 @@ exports.competitiveExamInputModel = new GraphQLInputObjectType({
   name: "competitiveExamInput",
   fields: () => ({
     id: { type: GraphQLString },
-    userId: { type: GraphQLInt },
-    examName: { type: GraphQLString },
+    user_id: { type: GraphQLInt },
+    exam_name: { type: GraphQLString },
     mark: { type: GraphQLFloat },
-    uploadFile: { type: GraphQLString },
+    upload_file: { type: GraphQLString },
   }),
 });
