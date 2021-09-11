@@ -573,6 +573,10 @@ object {
  * https://github.com/mozdevs/cssremedy/issues/14
  */
 
+select:invalid {
+  color: gray;
+}
+
 img,
 video {
   max-width: 100%;
