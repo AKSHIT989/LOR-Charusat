@@ -44,7 +44,7 @@ export default class FacultyForm extends React.Component {
       facultyEmailId: "",
       lor: "",
     };
-    
+
     items.push(item);
 
     this.setState({ items: items });
