@@ -7,7 +7,7 @@ exports.addUser = {
     args: {
         userInfo: { type: userModel },
     },
-    resolve(parent, args) {
-        return addUser(args.userInfo);
+    async resolve(parent, args) {
+        return await addUser(args.userInfo);
     }
 };

@@ -1,10 +1,13 @@
-const { GraphQLString, GraphQLObjectType, GraphQLBoolean } = require('graphql');
+const { GraphQLString, GraphQLObjectType, GraphQLBoolean, GraphQLInt } = require('graphql');
 
 exports.authenticateModel = new GraphQLObjectType({
     name: 'authenticate',
     fields: () => ({
-        accessToken: { type: GraphQLString },
-        refreshToken: { type: GraphQLString },
+        access_token: { type: GraphQLString },
+        refresh_token: { type: GraphQLString },
+        user_id: { type: GraphQLInt },
+        user_type: { type: GraphQLString },
+        email: { type: GraphQLString },
         authenticated: { type: GraphQLBoolean },
     }),
 });
