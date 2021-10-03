@@ -20,17 +20,13 @@ export default function Register() {
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form>
                   <div className="relative w-full mb-3">
-                    <input
-                      type="radio"
-                      name="user"
-                      className="px-3 py-3 placeholder-gray-400 text-gray-700 text-sm shadow focus:outline-none focus:shadow-outline w-5 ease-linear transition-all duration-150"
-                    />
+                    <input type="radio" name="user" className="radio-button" />
                     Student
                     <input
                       type="radio"
                       name="user"
                       style={{ marginLeft: "15%" }}
-                      className="px-3 py-3 placeholder-gray-400 text-gray-700 text-sm shadow focus:outline-none focus:shadow-outline w-5 ease-linear transition-all duration-150"
+                      className="radio-button"
                     />
                     Faculty
                   </div>

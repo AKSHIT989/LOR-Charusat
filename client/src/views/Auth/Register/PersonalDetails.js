@@ -2,6 +2,62 @@ import React from "react";
 import { Link } from "react-router-dom";
 
 export default function PersonalDetails() {
+  const [selectedInstitute, setSelectedInstitute] = React.useState("");
+  const [selectedDepartment, setSelectedDepartment] = React.useState("");
+
+  const CSPIT = [
+    "BTECH(CE)",
+    "BTECH(CL)",
+    "BTECH(CS)",
+    "BTECH(EC)",
+    "BTECH(EE)",
+    "BTECH(IT)",
+    "BTECH(ME)",
+    "DRCE",
+    "DRCL",
+    "DREC",
+    "DREE",
+    "DRME",
+    "MTECH(AMT)",
+    "MTECH(CE)",
+    "MTECH(CL)",
+    "MTECH(CSE)",
+    "MTECH(EC)",
+    "MTECH(EE)",
+    "MTECH(EVD)",
+    "MTECH(ICT)",
+    "MTECH(IT)",
+    "MTECH(ME)",
+    "MTECH(PE)",
+    "MTECH(TE)",
+    "MTM",
+    "PGDCS",
+  ];
+
+  const changeSelectInstituteHandler = (event) => {
+    setSelectedInstitute(event.target.value);
+  };
+  const changeSelectDepartmentHandler = (event) => {
+    setSelectedDepartment(event.target.value);
+  };
+
+  let type = null;
+  let options = null;
+  if (selectedInstitute === "CSPIT") {
+    type = CSPIT;
+  } else if (selectedInstitute === "Language") {
+    type = CSPIT;
+  } else if (selectedInstitute === "Data Structure") {
+    type = CSPIT;
+  }
+
+  if (type) {
+    options = type.map((insititute) => (
+      <option value={insititute} key={insititute}>
+        {insititute}
+      </option>
+    ));
+  }
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -54,11 +110,24 @@ export default function PersonalDetails() {
                     >
                       Institute
                     </label>
-                    <input
-                      type="text"
+                    <select
+                      name="Institutes"
                       className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                      placeholder="Institute"
-                    />
+                      onChange={changeSelectInstituteHandler}
+                    >
+                      <option value="" disabled selected hidden>
+                        Select Institute
+                      </option>
+                      <option value="CSPIT">CSPIT</option>
+                      <option value="CMPICA">CMPICA</option>
+                      <option value="RPCP">RPCP</option>
+                      <option value="IIIM">IIIM</option>
+                      <option value="PDPIAS">PDPIAS</option>
+                      <option value="ARIP">ARIP</option>
+                      <option value="MTIN">MTIN</option>
+                      <option value="CIPS">CIPS</option>
+                      <option value="DEPSTAR">DEPSTAR</option>
+                    </select>
                   </div>
 
                   <div className="relative w-full mb-3">
@@ -68,26 +137,17 @@ export default function PersonalDetails() {
                     >
                       Department
                     </label>
-                    <input
-                      type="text"
+                    <select
+                      name="Departments"
                       className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                      placeholder="Department"
-                    />
-                  </div>
-
-                  {/* <div className="relative w-full mb-3">
-                    <label
-                      className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
+                      onChange={changeSelectDepartmentHandler}
                     >
-                      Counsellor
-                    </label>
-                    <input
-                      type="text"
-                      className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                      placeholder="Counsellor"
-                    />
-                  </div> */}
+                      <option value="" disabled selected hidden>
+                        Select Department
+                      </option>
+                      {options}
+                    </select>
+                  </div>
 
                   <div className="text-right mt-6">
                     <Link to="/auth/Register">
