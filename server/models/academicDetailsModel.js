@@ -9,7 +9,7 @@ const {
 exports.academicDetailsModel = new GraphQLObjectType({
   name: "academicDetails",
   fields: () => ({
-    id: { type: GraphQLString },
+    id: { type: GraphQLInt },
     user_id: { type: GraphQLInt },
     sem: { type: GraphQLInt },
     attendance: { type: GraphQLFloat },

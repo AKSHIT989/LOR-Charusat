@@ -1,50 +1,28 @@
-import React, { useState } from "react";
+import React from "react";
 import CardTable from "../../../components/Cards/CardTable";
+import Remark from "../../../components/Remark/Remark";
+import { UserContext } from "../../../contexts/user";
+import { GET_FACULTY_REQUEST, UPDATE_FACULTY_LOR_STATUS } from "../../../queries";
+import { decrypt, encrypt } from "../../../secure";
 
-const RemarkElement = ({ value, name }) => {
-  const [state, setState] = useState({ value: value });
-
-  const handleChange = (event) => {
-    event.stopPropagation();
-    setState({ ...state, value: event.target.value });
-  };
-
-  const handleChangeOnBlur = (event) => {
-    event.stopPropagation();
-    // PUT Request to update value of remark
-    // console.log(`${parseInt(event.target.name.substr(6))}: ${state.value}`);
-  };
-
-  return (
-    <>
-      <input
-        value={state.value}
-        name={name}
-        className="border-none outline-none h-10"
-        onChange={handleChange}
-        onBlur={handleChangeOnBlur}
-      />
-      <br />
-      <input type="file" />
-    </>
-  );
-};
-
-const LinkElement = ({name}) => (
+const LinkElement = ({ name, link }) => (
   <a
     className="text-blue-500 underline"
     target="_blank"
-    href="/redirect/https://www.google.com"
+    rel="noreferrer"
+    href={`/redirect/${link}`}
   >
     {name}
   </a>
 );
 
 class LorRequest extends React.Component {
+  static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
       body: [],
+      isLoading: false,
     };
 
     this.getData = this.getData.bind(this);
@@ -52,6 +30,7 @@ class LorRequest extends React.Component {
     this.handleCickOnButton = this.handleCickOnButton.bind(this);
     this.handleClickOnCheckBox = this.handleClickOnCheckBox.bind(this);
     this.checkAllCheckboxes = this.checkAllCheckboxes.bind(this);
+    this.updateLORStatus = this.updateLORStatus.bind(this);
 
     this.checkboxRefs = { header: React.createRef(), body: [] };
     this.header = [
@@ -63,13 +42,13 @@ class LorRequest extends React.Component {
       "Request Id",
       "Student Id",
       "Student Name",
-      "Semester",
       "Remarks",
       "View/Download LOR",
     ];
 
     this.title = "LOR Request";
     this.count = 0;
+    this.approveIndices = [];
   }
 
   componentDidMount() {
@@ -77,10 +56,31 @@ class LorRequest extends React.Component {
   }
 
   async getData() {
+    this.approveIndices = [];
     try {
-      const response = await fetch("http://localhost:1337/faculty-requests");
-      const data = await response.json();
-      this.processData(data);
+      const [userInfo] = this.context;
+      const response = await fetch(process.env.REACT_APP_API_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${userInfo.access_token}`,
+        },
+        body: JSON.stringify({
+          text: encrypt(
+            GET_FACULTY_REQUEST(
+              userInfo.email,
+              userInfo.user_id,
+              userInfo.user_type
+            )
+          ),
+        }),
+      });
+      const result = await response.json();
+      const { data } = JSON.parse(decrypt(result.text));
+      // console.log(data);
+      this.processData(data.getFacultyRequests);
     } catch (e) {
       console.log(e);
     }
@@ -88,45 +88,95 @@ class LorRequest extends React.Component {
 
   processData(data) {
     this.checkboxRefs.body = [];
-    const body = data.map((request, index) => {
-      let row = [];
-      this.checkboxRefs.body.push(React.createRef());
-
-      row.push(
-        <input
-          type="checkbox"
-          ref={this.checkboxRefs.body[index]}
-          onClick={(event) => {
-            this.handleClickOnCheckBox(event, index);
-          }}
-        />
-      );
-      row.push(`Req ${request["req_id"]}`);
-      row.push(request["stu_id"]);
-      row.push(request["stu_name"]);
-      row.push(request["semester"]);
-      row.push(
-        <RemarkElement value={request["remarks"]} name={`remark${index}`} />
-      );
-      row.push(<LinkElement name={"View/Download"} />);
-      return row;
-    });
-    this.setState({ body: body });
+    let body;
+    if (data) {
+      body = data.map((request, index) => {
+        let row = [];
+        this.checkboxRefs.body.push({ref: React.createRef(), id: request.id});
+  
+        row.push(
+          <input
+            type="checkbox"
+            ref={this.checkboxRefs.body[index].ref}
+            onClick={(event) => {
+              this.handleClickOnCheckBox(event, index, request.id);
+            }}
+          />
+        );
+        row.push(`Req ${index + 1}`);
+        row.push(request["charusat_id"]);
+        row.push(request["stu_name"]);
+        row.push(
+          <Remark
+            value={request["remark"] || ""}
+            name={`remark${index}`}
+            id={request.id}
+            userInfo={this.context[0]}
+            stuEmail={request["stu_email"]}
+            file={request["faculty_upload"] || ""}
+          />
+        );
+        row.push(<LinkElement name={"View/Download"} link={process.env.REACT_APP_VIEW_FILE + request["stu_upload"]} />);
+        return row;
+      });
+    } else {
+      body = [];
+    }
+    this.setState({ body: [...body] });
   }
 
-  handleCickOnButton(event) {
+  async updateLORStatus(approved) {
+    try {
+      const indices = this.approveIndices.map(obj => obj.id);
+      const userInfo = this.context[0];
+      await fetch(process.env.REACT_APP_API_URL, {
+        method: "POST",
+        headers: {
+          Accept: "application/json",
+          "Content-Type": "application/json",
+          "Access-Control-Allow-Origin": "*",
+          Authorization: `Bearer ${userInfo.access_token}`,
+        },
+        body: JSON.stringify({
+          text: encrypt(
+            UPDATE_FACULTY_LOR_STATUS(
+              indices,
+              userInfo.user_id,
+              userInfo.user_type,
+              approved
+            )
+          ),
+        }),
+      });
+    } catch (e) {
+      console.log(e);
+    }
+    this.approveIndices = [];
+  }
+
+  async handleCickOnButton(event, approved) {
     event.stopPropagation();
-    // DELETE request to server
-    // GET request to server { getData() }
+    this.setState({isLoading: true});
+    await this.updateLORStatus(approved);
+    await this.getData();
+    this.checkboxRefs.body.forEach(obj => obj.ref.current.checked = false);
+    this.checkboxRefs.header.current.checked = false;
+    this.count = 0;
+    this.setState({isLoading: false});
   }
 
-  handleClickOnCheckBox(event, index) {
+  handleClickOnCheckBox(event, index, id) {
     event.stopPropagation();
     this.checkboxRefs.header.current.checked = false;
     if (event.target.checked) {
       this.count++;
+      this.approveIndices.push({id, index});
     } else {
       this.count--;
+      const idx = this.approveIndices.findIndex(obj => id === obj.id);
+      if (idx > -1) {
+        this.approveIndices.splice(idx, 1);
+      }
     }
     if (this.count === this.checkboxRefs.body.length) {
       this.checkboxRefs.header.current.checked = true;
@@ -135,14 +185,18 @@ class LorRequest extends React.Component {
 
   checkAllCheckboxes(event) {
     event.stopPropagation();
+    const approveIndices = [];
     this.checkboxRefs.body.forEach((checkbox, index) => {
-      checkbox.current.checked = event.target.checked;
+      checkbox.ref.current.checked = event.target.checked;
+      approveIndices.push({id: checkbox.id, index});
     });
 
     if (event.target.checked) {
       this.count = this.checkboxRefs.body.length;
+      this.approveIndices = approveIndices;
     } else {
       this.count = 0;
+      this.approveIndices = [];
     }
   }
 
@@ -155,11 +209,20 @@ class LorRequest extends React.Component {
           body={this.state.body}
         />
         <button
-          className="bg-blue-500 w-max float-right text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150"
+          className={"bg-blue-500 w-max float-right text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 disabled:opacity-50 disabled:cursor-wait"}
           type="button"
-          onClick={this.handleCickOnButton}
+          onClick={(event) => this.handleCickOnButton(event, true)}
+          disabled={this.state.isLoading}
         >
           Approve
+        </button>
+        <button
+          className={"bg-blue-500 w-max float-right text-white active:bg-blue-600 font-bold uppercase text-xs px-4 py-2 rounded shadow hover:shadow-md outline-none focus:outline-none mr-1 ease-linear transition-all duration-150 disabled:opacity-50 disabled:cursor-wait"}
+          type="button"
+          onClick={(event) => this.handleCickOnButton(event, false)}
+          disabled={this.state.isLoading}
+        >
+          Reject
         </button>
       </>
     );

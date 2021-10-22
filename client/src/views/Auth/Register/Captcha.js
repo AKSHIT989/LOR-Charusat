@@ -1,12 +1,27 @@
-import React, { useState } from "react";
-import { Link } from "react-router-dom";
+import React, { useEffect, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
 import ReCAPTCHA from "react-google-recaptcha";
 
-function onChange(value) {
-  console.log("Captcha value:", value);
-}
+export default function Captcha({ location }) {
+  const { prevPath } = location;
+  const [disableNext, setDisableNext] = useState(true);
+  const history = useHistory();
 
-export default function Captcha() {
+  useEffect(() => {
+    if (prevPath === '/auth/AccountDetails') {
+    } else {
+      history.replace('/auth/login');
+    }
+  }, [history, prevPath]);
+
+  const handleCaptchaChange = (captcha) => {
+    if (captcha) {
+      setDisableNext(false);
+    } else {
+      setDisableNext(true);
+    }
+  }
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -19,39 +34,12 @@ export default function Captcha() {
                     One more step
                   </h6>
                 </div>
-
                 <hr className="mt-6 border-b-1 border-gray-400" />
               </div>
               <div className="flex-auto px-4 lg:px-10 py-10 pt-0">
                 <form>
-                  {/* <div className="relative w-full mb-3">
-                  <div className="relative w-full mb-3">
-                    <label
-                      className="block text-gray-700 text-sm font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Before proceeding, we need to make sure a real person is creating this account.
-                    </label>
-                  </div>
-                    <label
-                      className="block uppercase text-gray-700 text-xs font-bold mb-2"
-                      htmlFor="grid-password"
-                    >
-                      Enter The Characters you see
-                    </label>
-                    <input
-                      type="number"
-                      className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
-                      placeholder="Enter Code"
-                    />
-                  </div> */}
-
-                  <ReCAPTCHA
-                    sitekey="6Le0vz4aAAAAAMU7pRDBx9L-l3QGqqf-9M1zfHwu"
-                    onChange={onChange}
-                  />
-
-                  <div>
+                  <ReCAPTCHA sitekey="6Le0vz4aAAAAAMU7pRDBx9L-l3QGqqf-9M1zfHwu" onChange={handleCaptchaChange} />
+                  {/* <div>
                     <label className="inline-flex items-center cursor-pointer">
                       <input
                         id="customCheckLogin"
@@ -69,26 +57,25 @@ export default function Captcha() {
                         </a>
                       </span>
                     </label>
-                  </div>
-
+                  </div> */}
                   <div className="text-right mt-6">
-                    <Link to="/auth/AccountDetails">
-                      <button
-                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-auto  transition-all duration-150"
-                        type="button"
-                      >
+                    <button
+                      className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-auto  transition-all duration-150"
+                      type="button"
+                    >
+                      <Link to={{pathname: "/auth/AccountDetails", prevPath: "/auth/Captcha"}}>
                         Back
-                      </button>
-                    </Link>
-
-                    <Link to="/auth/VerifyEmail">
-                      <button
-                        className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ml-2 w-auto ease-linear transition-all duration-150"
-                        type="button"
-                      >
+                      </Link>
+                    </button>
+                    <button
+                      className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 ml-2 w-auto ease-linear transition-all duration-150 disabled:opacity-75 disabled:cursor-not-allowed"
+                      type="button"
+                      disabled={disableNext}
+                    >
+                      <Link to={{pathname: "/auth/VerifyEmail", prevPath: "/auth/Captcha"}}>
                         Next
-                      </button>
-                    </Link>
+                      </Link>
+                    </button>
                   </div>
                 </form>
               </div>

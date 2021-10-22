@@ -6,11 +6,11 @@ import HeaderStats from "../components/Headers/HeaderStats.js";
 
 // import RequestsAction from '../views/HodDashboard/RequestsAction/RequestsAction'
 import LorRequest from "../views/HodDashboard/LorRequest/LorRequest";
-import Report from "../views/HodDashboard/Report/Report";
+// import Report from "../views/HodDashboard/Report/Report";
 import UserCreate from "../views/HodDashboard/UserCreate/UserCreate";
-import UserManage from "../views/HodDashboard/UserManage/UserManage";
+// import UserManage from "../views/HodDashboard/UserManage/UserManage";
 
-import profile from "../assets/img/team-1-800x800.jpg";
+import profile from "../assets/img/settings.svg";
 
 function Hod() {
   const hodHeader = [
@@ -19,41 +19,18 @@ function Hod() {
       text: "Approve LOR Request",
       link: "/hod/request",
     },
-    { icon: `far fa-chart-bar`, text: "Report", link: "/hod/report" },
+    // { icon: `far fa-chart-bar`, text: "Report", link: "/hod/report" },
     {
       icon: `fas fa-user-plus`,
       text: "User Creation",
       link: "/hod/user-creation",
     },
-    {
-      icon: `fas fa-users-cog`,
-      text: "User Management",
-      link: "/hod/user-management",
-    },
+    // {
+    //   icon: `fas fa-users-cog`,
+    //   text: "User Management",
+    //   link: "/hod/user-management",
+    // },
     { icon: `fas fa-sign-out-alt`, text: "Logout", link: "/auth" },
-  ];
-
-  const fields = [
-    {
-      username: "Id",
-      inputValue: "",
-    },
-    {
-      username: "Name",
-      inputValue: "",
-    },
-    {
-      username: "Department",
-      inputValue: "",
-    },
-    {
-      username: "Institute",
-      inputValue: "",
-    },
-    {
-      username: "Counsellor Name",
-      inputValue: "",
-    },
   ];
 
   return (
@@ -67,9 +44,9 @@ function Hod() {
           <Switch>
             {/* <Route path="/hod/requests-action" exact component={RequestsAction} /> */}
             <Route path="/hod/request" exact component={LorRequest} />
-            <Route path="/hod/report" exact component={Report} />
-            <Route path="/hod/user-creation" exact component={() => <UserCreate fields={fields} />} />
-            <Route path="/hod/user-management" exact component={UserManage} />
+            {/* <Route path="/hod/report" exact component={Report} /> */}
+            <Route path="/hod/user-creation" exact component={() => <UserCreate />} />
+            {/* <Route path="/hod/user-management" exact component={UserManage} /> */}
             <Redirect from="/hod" to="/hod/request" />
           </Switch>
         </div>

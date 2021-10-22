@@ -9,6 +9,9 @@ const {
 const { academicDetailsModel } = require("./academicDetailsModel");
 const { competitiveExamModel } = require("./competitiveExamModel");
 const { facultyPreferenceModel } = require("./facultyPreferenceModel");
+const { getFacultiesModel } = require("./getFaculties");
+const { personalDetailsModel } = require("./personalDetailsModel");
+const { ScalarDate } = require("./ScalarDate");
 const { universityPreferenceModel } = require("./universityPreferenceModel");
 
 const lorRequestModel = new GraphQLObjectType({
@@ -21,7 +24,7 @@ const lorRequestModel = new GraphQLObjectType({
     charusat_id: { type: GraphQLString },
     mobile: { type: GraphQLString },
     parent_mobile: { type: GraphQLString },
-    passout_date: { type: GraphQLString },
+    passout_date: { type: ScalarDate },
     placed_cdpc: { type: GraphQLBoolean },
     company: { type: GraphQLString },
     bond_completed: { type: GraphQLBoolean },
@@ -37,7 +40,7 @@ exports.lorRequestInputModel = new GraphQLInputObjectType({
     id: { type: GraphQLString },
     user_id: { type: GraphQLInt },
     parent_mobile: { type: GraphQLString },
-    passout_date: { type: GraphQLString },
+    passout_date: { type: ScalarDate },
     placed_cdpc: { type: GraphQLBoolean },
     company: { type: GraphQLString },
     bond_completed: { type: GraphQLBoolean },
@@ -50,10 +53,12 @@ exports.lorRequestInputModel = new GraphQLInputObjectType({
 exports.wholeLORRequest = new GraphQLObjectType({
   name: "wholeLORRequest",
   fields: () => ({
-    lor_request: { type: lorRequestModel},
-    acad_details: { type: GraphQLList(academicDetailsModel)},
+    lor_request: { type: lorRequestModel },
+    personal_details: { type: personalDetailsModel },
+    acad_details: { type: GraphQLList(academicDetailsModel) },
     comp_exam_details: { type: GraphQLList(competitiveExamModel) },
     uni_pref: { type: GraphQLList(universityPreferenceModel) },
     faculty_pref: { type: GraphQLList(facultyPreferenceModel) },
+    faculty_list: { type: GraphQLList(getFacultiesModel) }
   }),
 });

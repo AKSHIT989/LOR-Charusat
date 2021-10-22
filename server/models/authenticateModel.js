@@ -8,6 +8,10 @@ exports.authenticateModel = new GraphQLObjectType({
         user_id: { type: GraphQLInt },
         user_type: { type: GraphQLString },
         email: { type: GraphQLString },
+        first_name: { type: GraphQLString },
+        last_name: { type: GraphQLString },
+        institute: { type: GraphQLString },
+        department: { type: GraphQLString },
         authenticated: { type: GraphQLBoolean },
     }),
 });

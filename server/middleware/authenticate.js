@@ -12,12 +12,12 @@ exports.authenticateToken = (headers, user_id, user_type) => {
   const authHeader = headers["authorization"];
   const token = authHeader && authHeader.split(" ")[1];
   const key = readFileSync("access-secret.key", "utf-8");
-  if (token == null) return new Error("Error 401: Unauthorized user");
+  if (token == null) return false;
 
   return jwt.verify(token, key, (err, data) => {
     if (err) {
       console.log(err);
-      throw new Error("Error 403: Forbidden");
+      return false;
     }
     if (data.user_id === user_id && data.user_type === user_type) {
       return true;

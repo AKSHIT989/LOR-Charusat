@@ -1,8 +1,8 @@
-import React, { useState } from "react";
+import React from "react";
 import { Link } from "react-router-dom";
 
 export default function Login() {
-  const [Email, setEmail] = useState("*******@gmail.com");
+    // const [Email] = useState("*******@gmail.com")
   return (
     <>
       <div className="container mx-auto px-4 h-full">
