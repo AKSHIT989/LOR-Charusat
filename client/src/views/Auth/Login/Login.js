@@ -1,7 +1,57 @@
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useContext, useState } from "react";
+import { Link, useHistory } from "react-router-dom";
+import { UserContext } from "../../../contexts/user";
+import { AUTHENTICATE_USER } from "../../../queries";
+import { decrypt, encrypt } from "../../../secure";
 
 export default function Login() {
+  const [email, setEmail] = useState('');
+  const [password, setPassword] = useState('');
+  const [, setUser] = useContext(UserContext);
+  const history = useHistory();
+  
+  const handleSignIn = (event) => {
+    event.stopPropagation();
+    // Email regex
+    const emailRegex = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    // Min 8 chars, atleast 1 upper, 1 lower, 1 number and 1 special character
+    // const passwordRegex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+
+    if (emailRegex.test(email)) {
+      try {
+        authenticateUser();
+      } catch (err) {
+        console.log(err);
+      }
+    }
+  }
+
+  const authenticateUser = async () => {
+    try {
+      const response = await fetch(process.env.REACT_APP_API_URL, {
+        method: 'POST', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+        },
+        body: JSON.stringify({
+          text: encrypt(AUTHENTICATE_USER(email, password)),
+        }),
+      });
+      const result = await response.json();
+      const {data} = JSON.parse(decrypt(result.text));
+      const userInfo = data.authenticateUser;
+      setUser({...userInfo});
+      if (userInfo.authenticated) {
+        // window.location.pathname = `/${userInfo.user_type.toLowerCase()}`;
+        history.push(`/${userInfo.user_type.toLowerCase()}`);
+      }
+    } catch (err) {
+      console.log(err);
+    }
+  }
+
   return (
     <>
       <div className="container mx-auto px-4 h-full">
@@ -31,6 +81,8 @@ export default function Login() {
                       type="email"
                       className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                       placeholder="Email"
+                      value={email}
+                      onChange={(event) => setEmail(event.target.value)}
                     />
                   </div>
 
@@ -45,6 +97,8 @@ export default function Login() {
                       type="password"
                       className="px-3 py-3 placeholder-gray-400 text-gray-700 bg-white rounded text-sm shadow focus:outline-none focus:shadow-outline w-full ease-linear transition-all duration-150"
                       placeholder="Password"
+                      value={password}
+                      onChange={(event) => setPassword(event.target.value)}
                     />
                   </div>
                   <div>
@@ -64,6 +118,7 @@ export default function Login() {
                     <button
                       className="bg-gray-900 text-white active:bg-gray-700 text-sm font-bold uppercase px-6 py-3 rounded shadow hover:shadow-lg outline-none focus:outline-none mr-1 mb-1 w-full ease-linear transition-all duration-150"
                       type="button"
+                      onClick={handleSignIn}
                     >
                       Sign In
                     </button>

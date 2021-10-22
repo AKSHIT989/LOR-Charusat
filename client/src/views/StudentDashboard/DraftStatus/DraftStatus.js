@@ -1,8 +1,11 @@
 import React from "react";
 import CardTable from "../../../components/Cards/CardTable";
+import { UserContext } from "../../../contexts/user";
+import { STU_LOR_DRAFT_STATUS } from "../../../queries";
+import { decrypt, encrypt } from "../../../secure";
 
 const StatusElement = ({ status }) => {
-  const color = status === "Pending" ? "orange" : "green";
+  const color = status && status.toLowerCase() === "completed" ? "green" : "orange";
   return (
     <>
       <i className={`fas fa-circle text-${color}-500 mr-2`}></i> {status}
@@ -11,6 +14,7 @@ const StatusElement = ({ status }) => {
 };
 
 class DraftStatus extends React.Component {
+  static contextType = UserContext;
   constructor(props) {
     super(props);
     this.state = {
@@ -30,9 +34,22 @@ class DraftStatus extends React.Component {
 
   async getData() {
     try {
-      const response = await fetch("http://localhost:1337/student-draft-statuses");
-      const data = await response.json();
-      this.processData(data);
+      const [userInfo] = this.context;
+      const response = await fetch(process.env.REACT_APP_API_URL, {
+        method: 'POST', 
+        headers: {
+          'Accept': 'application/json',
+          'Content-Type': 'application/json',
+          'Access-Control-Allow-Origin': '*',
+          'Authorization': `Bearer ${userInfo.access_token}`
+        },
+        body: JSON.stringify({
+          text: encrypt(STU_LOR_DRAFT_STATUS(userInfo.user_id, userInfo.user_type)),
+        }),
+      });
+      const result = await response.json();
+      const {data} = JSON.parse(decrypt(result.text));
+      this.processData(data.getStuLORDraftStatus);
     } catch (e) {
       console.log(e);
     }
@@ -42,10 +59,10 @@ class DraftStatus extends React.Component {
     const body = data.map((draftStatus, index) => {
       let row = [];
 
-      row.push(`Draft ${draftStatus["draft_id"]}`);
+      row.push(`Draft ${index + 1}`);
       row.push(draftStatus["faculty_name"]);
       row.push(<StatusElement status={draftStatus["status"]} />);
-      row.push(draftStatus["remarks"]);
+      row.push(draftStatus["remark"]);
       return row;
     });
     this.setState({ body: body });

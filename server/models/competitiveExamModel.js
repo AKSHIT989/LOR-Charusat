@@ -9,7 +9,7 @@ const {
 exports.competitiveExamModel = new GraphQLObjectType({
   name: "competitiveExam",
   fields: () => ({
-    id: { type: GraphQLString },
+    id: { type: GraphQLInt },
     user_id: { type: GraphQLInt },
     exam_name: { type: GraphQLString },
     mark: { type: GraphQLFloat },

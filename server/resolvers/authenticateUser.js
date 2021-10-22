@@ -11,7 +11,8 @@ const generateHash = (text) => {
 exports.authenticateUser = async (email, password) => {
   return new Promise((resolve, reject) => {
     db.execute(
-      "SELECT id, user_type, email FROM user WHERE email=? AND password=?",
+      `SELECT id, user_type, email, institute, department, first_name, last_name 
+      FROM user WHERE email=? AND password=?`,
       [email, generateHash(password)],
       (err, result) => {
         if (err) {
@@ -50,6 +51,10 @@ exports.authenticateUser = async (email, password) => {
               user_id: result[0].id,
               user_type: result[0].user_type,
               email: result[0].email,
+              first_name: result[0].first_name,
+              last_name: result[0].last_name,
+              institute: result[0].institute,
+              department: result[0].department,
             });
           } else {
             reject(new Error("Can't authenticate the user"));

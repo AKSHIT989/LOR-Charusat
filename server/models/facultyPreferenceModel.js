@@ -9,13 +9,14 @@ const {
 exports.facultyPreferenceModel = new GraphQLObjectType({
   name: "facultyPreference",
   fields: () => ({
-    id: { type: GraphQLString },
+    id: { type: GraphQLInt },
     user_id: { type: GraphQLInt },
     faculty_name: { type: GraphQLString },
     faculty_email: { type: GraphQLString },
     remark: { type: GraphQLString },
     approved: { type: GraphQLBoolean },
-    upload_lor: { type: GraphQLString },
+    stu_upload: { type: GraphQLString },
+    faculty_upload: { type: GraphQLString },
   }),
 });
 
@@ -28,6 +29,7 @@ exports.facultyPreferenceInputModel = new GraphQLInputObjectType({
     faculty_email: { type: GraphQLString },
     remark: { type: GraphQLString },
     approved: { type: GraphQLBoolean },
-    upload_lor: { type: GraphQLString },
+    stu_upload: { type: GraphQLString },
+    faculty_upload: { type: GraphQLString },
   }),
 });

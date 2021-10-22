@@ -12,7 +12,7 @@ exports.getHODRequests = {
     },
     async resolve(parent, args, { headers }) {
         try {
-            if (authenticateToken(headers,args.user_id, args.user_type)) {
+            if (authenticateToken(headers, args.user_id, args.user_type)) {
                 return await getHODRequests(args.email);
             } else {
                 return new Error("Error 403: Forbidden");

@@ -4,6 +4,9 @@
 /node_modules
 /.pnp
 .pnp.js
+secure.js
+queries.js
+*.env
 
 # testing
 /coverage
