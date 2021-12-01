@@ -8,15 +8,20 @@ const parseIp = (req) =>
     || (req.socket && req.socket.remoteAddress);
 
 const verifyOtp = (req, email, givenOtp) => {
-    const ip = parseIp(req);
-    const { otp, time } = otps[`${ip}_${email}`];
-    const currentTime = new Date();
-    const timeDiff = Math.abs(time - currentTime);
-    if (timeDiff < 100000 && givenOtp === otp) { // time diff less than 100s
-        delete otps[`${ip}_${email}`];
-        return true;
+    try {
+        const ip = parseIp(req);
+        const { otp, time } = otps[`${ip}_${email}`];
+        const currentTime = new Date();
+        const timeDiff = Math.abs(time - currentTime);
+        if (timeDiff < 100000 && givenOtp === otp) { // time diff less than 100s
+            delete otps[`${ip}_${email}`];
+            return true;
+        }
+        return false;
+    } catch (err) {
+        console.log(err);
+        return false; 
     }
-    return false;
 }
 
 exports.registerUser = {

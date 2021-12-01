@@ -52,10 +52,10 @@ function LorRequest({ history }) {
     setFacultyList([...data.faculty_list]);
     if (data.lor_request) {
       setLorRequest({ ...data.lor_request });
-      setAcadDetails([...data.acad_details]);
-      setCompExamDetails([...data.comp_exam_details]);
-      setUniPref([...data.uni_pref]);
-      setFacultyPref([...data.faculty_pref]);
+      setAcadDetails(data.acad_details ? [...data.acad_details] : []);
+      setCompExamDetails(data.comp_exam_details ? [...data.comp_exam_details] : []);
+      setUniPref(data.uni_pref ? [...data.uni_pref] : []);
+      setFacultyPref(data.faculty_pref ? [...data.faculty_pref] : []);
       setDisableSubmit(true);
       setTermsAccepted(true);
     } else {
