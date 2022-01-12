@@ -22,7 +22,7 @@ touch .env
 mkdir uploads
 cp .example.env .env
 ```
-Update env and then ```yarn start```
+> Update env and then ```yarn start```
 
 3. Make sure MySQL service is active, to create schema use "server/database.sql"
-4. That's it start geeking
+4. That's it start geeking, checkout CONTRIBUTING.md to contribute to this repo 🤓🤓
