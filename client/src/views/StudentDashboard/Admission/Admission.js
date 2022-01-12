@@ -6,7 +6,6 @@ import PrimaryButton from "../../../components/Button/PrimaryButton"
 import DatePicker from "react-datepicker"
 import "react-datepicker/dist/react-datepicker.css"
 import '../../../assets/styles/external.css'
-import 'react-phone-number-input/style.css'
 import PhoneInput from 'react-phone-input-2'
 import 'react-phone-input-2/lib/style.css'
 import ExamForm from "../../../components/DynamicForm/ExamForm"

@@ -10,7 +10,7 @@ const { generateKeySecret } = require("./middleware/authenticate");
 const { decrypt, encrypt } = require("./utilities/secure");
 const { sendFile, uploadFile, deleteFile } = require("./file-management");
 const app = express();
-
+console.log("⌛ Booting up server...")
 const encryptResponse = (req, res, next) => {
   const originalSend = res.send;
   res.send = (data) => {
@@ -28,8 +28,11 @@ const decryptRequest = (req, res, next) => {
 
 const startServer = async () => {
   try {
-    await connectDB();
-    console.log("Connected to mysql");
+    await connectDB().then(()=>{
+      console.log("✅ Connected to MySQL");
+    }).catch((err)=>{
+      console.log("❌Couldn't connect to MySQL")
+    });
 
     app.use(cors());
     app.use(express.json());
@@ -74,7 +77,7 @@ const startServer = async () => {
   }
 
   app.listen(process.env.SERVER_PORT, () =>
-    console.log(`Server running on port ${process.env.SERVER_PORT}`)
+    console.log(`✅ Server running on port ${process.env.SERVER_PORT}`)
   );
 };
 
